@@ -1,0 +1,89 @@
+h1 {
+  text-align: center;
+  color: #ebec00;
+  font-size: 32px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 40px;
+}
+
+.navbar {
+  background-color: #ebec00;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 0;
+  margin: 0 auto;
+  width: 500px;
+}
+
+.navbar a {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+p {
+  text-align: center;
+  font-size: 18px;
+  margin: 30px;
+}
+
+li {
+  display: inline-block;
+  padding: 0 10px;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #005bbb;
+  text-align: center;
+}
+
+.game {
+  background-color: #ffffff;
+  padding: 20px;
+  width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  color: #e56a54;
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+label {
+  color: #ffc72c;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 10px 0;
+  display: block;
+}
+
+input {
+  width: 600px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ebec00;
+  font-size: 16px;
+}
+
+input[type=submit] {
+  background-color: #00a69c;
+  color: #ffffff;
+  font-weight: bold;
+  margin-top: 10px;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>My Login and Registration page</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div class="login-box">
+      <h1>Login</h1>
+       <form action="/loginuser" method="post" enctype="multipart/form-data">
+        <label for="usernamel">Username</label><br>
+        <input type="text" id="usernamel" name="usernamel"><br>
+        <label for="regpass">Password</label><br>
+        <input type="password" id="regpassl" name="regpassl"><br><br>
+        <input type="submit" value="Login">
+    </form>
+    </div>
+    <div class="register-box">
+      <h1>Register</h1>
+      <form action="/registeruser" method="post" enctype="multipart/form-data">
+        <label for="username">Username</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="regpass">Password</label><br>
+        <input type="password" id="regpass" name="regpass"><br><br>
+        <input type="submit" value="Register">
+    </form>
+    </div>
+  </body>
+</html>
