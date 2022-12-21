@@ -52,6 +52,15 @@ body {
   box-shadow: 0 0 10px rgb(0 0 0 / 50%);
 }
 
+.game input{
+  padding-bottom: 20px;
+}
+
+.game label{
+padding: 10 10 10 10;
+
+}
+
 h1 {
   color: #e56a54;
   font-weight: bold;
@@ -156,31 +165,26 @@ div.desc {
   
   /* Style the tab content */
   .tabcontent {
-    float: left;
-    padding: 0px 12px;
-    border: 1px solid #ccc;
+    float: center;
+    text-align: center;
     width: 70%;
+    height: 55%;
     border-left: none;
     height: 300px;
     background: #005bbb;
     color: #fff;
   }
 
+  .tabcontent p{
+    text-align: center;
+  }
 
 
 
   .card-slider {
     max-width: 960px;
     margin: 0 auto;
-    /** Main link */
-    /** Product title */
-    /** Product image */
-    /** Product description */
-    /** Floating "sale" badge */
-    /** Price */
-    /** Rating */
-    /** "30 reviews" link next to stars */
-    /** Hover state = add box shadow, underline the title */
+
   }
   @media screen and (max-width: 1024px) {
     .card-slider {
@@ -231,6 +235,8 @@ div.desc {
     padding: 10px 10px 5px 10px;
     font-size: 16px;
     font-weight: bold;
+text-align: center;
+
   }
   .card-slider .card .title:hover {
     text-decoration: underline;
@@ -345,3 +351,18 @@ div.desc {
       justify-content: space-around;}
       .login-box h4{cursor: pointer;}
 .tabcontent p{margin: 0 !important;text-align: left;}
+
+
+.teamName h1 {
+    text-align: center;
+    
+}
+
+.mentorTitle {
+    text-align: center;
+}
+
+.tabcontent{
+  text-align: center;
+}
+
