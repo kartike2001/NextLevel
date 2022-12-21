@@ -5,28 +5,31 @@
   </head>
   <body>
   <div class="game">
-      <h1> Hey {{team}}</h1>
+    
+    <div class="teamName" style="text-align: center";><h1> Hey {{team}}</h1></div>
+      
+
       <form action="/submit" method="post" enctype="multipart/form-data">
-            <label for="Q1">Find a Student Engagement Ambassador and upload a selfie with them.</label><br>
+            <label for="Q1"> 1. Find a Student Engagement Ambassador and upload a selfie with them.</label><br>
             <input type="text" id="Q1" name="Q1"><br>
-            <label for="Q2">Tell us your best piece of advice for networking or ask a question you have about networking.</label><br>
+            <label for="Q2">2. Tell us your best piece of advice for networking or ask a question you have about networking.</label><br>
             <input type="text" id="Q2" name="Q2"><br>
-            <label for="Q3">Tell us one unique thing about you that you'll share in interviews</label><br>
+            <label for="Q3">3. Tell us one unique thing about you that you'll share in interviews</label><br>
             <input type="text" id="Q3" name="Q3"><br>
-            <label for="Q4">Watch some of these examples of how to best answer these questions.</label><br>
+            <label for="Q4">4. Watch some of these examples of how to best answer these questions.</label><br>
             <input type="text" id="Q4" name="Q4"><br>
-            <label for="Q5">List 3 campus resources or programs that help students recharge, de-stress, and build resilience.</label><br>
+            <label for="Q5">5. List 3 campus resources or programs that help students recharge, de-stress, and build resilience.</label><br>
             <input type="text" id="Q5" name="Q5"><br>
-            <label for="Q6">Choose three words that describe you best.</label><br>
+            <label for="Q6">6. Choose three words that describe you best.</label><br>
             <input type="text" id="Q6" name="Q6"><br>
-            <label for="Q7">Look up 3 mentors in your field or similar areas and see what type of mentoring style you think they exhibit.</label><br>
+            <label for="Q7">7. Look up 3 mentors in your field or similar areas and see what type of mentoring style you think they exhibit.</label><br>
             <input type="text" id="Q7" name="Q7"><br>
-            <label for="Q8">What is one way we, as a university, can have more representation at our "tables"?</label><br>
+            <label for="Q8">8. What is one way we, as a university, can have more representation at our "tables"?</label><br>
             <input type="text" id="Q8" name="Q8"><br>
-            <label for="Q9">Q9:</label><br>
+            <!-- <label for="Q9">9. </label><br>
             <input type="text" id="Q9" name="Q9"><br>
-            <label for="Q10">Q10:</label><br>
-            <input type="text" id="Q10" name="Q10"><br>
+            <label for="Q10">10. </label><br>
+            <input type="text" id="Q10" name="Q10"><br> -->
             <input type="submit" value="post">
       </form>
   </div>

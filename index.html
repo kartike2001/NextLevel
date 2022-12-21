@@ -1,210 +1,258 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Next-Level Leadership Conference</title>
+        <title>Next-Level Leadership Conference</title>
 
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="stylesheet" type="text/css"
-    href="https://cdn.jsdelivr.net/npm/bootstrap-v4-grid-only@1.0.0/dist/bootstrap-grid.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/slick.min.css'>
-  <link rel='stylesheet'
-    href='https:////cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/accessible-slick-theme.min.css'>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-v4-grid-only@1.0.0/dist/bootstrap-grid.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/slick.min.css'>
+        <link rel='stylesheet' href='https:////cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/accessible-slick-theme.min.css'>
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
 
-</head>
+    </head>
 
-<body>
-  <div class="header">
-   
-    <div class="nav bar">
-      <nav>
-        <ul>
-          <!-- <li><a href="#" class ="logo"">LOGO</a></li>
-          <li><a href="#mentors">Mentors</a></li>
-          <li><a href="#schedule">Schedule</a></li> -->
-          <li><a href="/login">Login</a></li>
-          <li><a href="/game">Game</a></li>
-          <li><a href="/leaderboard">Leaderboard</a></li>
-        </ul>
-      </nav>
-    </div>
-  </div>
+    <body>
+        <div class="header">
 
-
-
-  
-  <div class="container" id ="hero">
-    <div class="row">
-      <div id="heroInfo" class="col-md-6" style="padding-top: 50px" >
-        <h2>Welcome to the Next-Level Leadership Conference!<br></h2>
-        <p>Here you will find world-renowned speakers and mentors who
-          will help you hone your leadership skills. Get ready to make connections, learn new things, and take your
-          leadership to the next level!</p>
-      </div>
-      <div id ="hero-text" class="col-md-6" style="min-height: 400px; padding-top: 30px; font-family: Arial, Helvetica, sans-serif;"><img width="100%" src="assets/img/others/image1.svg"></div>
-    </div>
-
-
-<div id= "middleHero">
-    <h2 class="mentorTitle" id="mentorTitle"> Our Mentors</h2>
-    <div class="row" id="mentors">
-     
-      <div class="card-slider">
-      </div>
-    </div>
-    <div style="clear: both; padding-bottom: 40px; "></div>
-    </div>
-
-    <div class="schedule" id="schedule">
-      <div class="tab">
-        <button class="tablinks" onclick="openschedule(event, 'tab1')" id="defaultOpen">Todays Schedule</button>
-        <button class="tablinks" onclick="openschedule(event, 'tab2')">8:30 a.m. - 9:00 a.m</button>
-        <button class="tablinks" onclick="openschedule(event, 'tab2')">9:00 a.m. - 9:45 a.m</button>
-        <button class="tablinks" onclick="openschedule(event, 'tab3')">9:45 a.m. - 10:00 a.m</button>
-        <button class="tablinks" onclick="openschedule(event, 'tab4')">9:45 a.m. - 10:00 a.m</button>
-        <button class="tablinks" onclick="openschedule(event, 'tab5')">10:00 a.m. - 10:30 a.m</button>
-        <button class="tablinks" onclick="openschedule(event, 'tab6')">10:30 a.m. - 11:45 a.m</button>
-        <button class="tablinks" onclick="openschedule(event, 'tab7')">11:45 a.m.-12:00 p.m</button>
-        <button class="tablinks" onclick="openschedule(event, 'tab8')">12:00 p.m. - 1:00 p.m</button>
-        <button class="tablinks" onclick="openschedule(event, 'tab9')">1:00 p.m.-2:00 p.m</button>
-      </div>
-    
-        <div id="tab1" class="tabcontent">
-          <p>Student* and Mentor Check-in SU Lobby <br>(*Students check in by 8:45 a.m. for BONUS tie-breaker points)
-          </p>
-        </div>
-
-        <div id="tab2" class="tabcontent">
-          <p>Coffee and Networking Activity SU Lobby</p>
-        </div>
-
-        <div id="tab3" class="tabcontent">
-          <p>Welcome SU Theater</p>
-        </div>
-
-        <div id="tab4" class="tabcontent">
-          <p>Welcome SU Theater</p>
-        </div>
-        <div id="tab5" class="tabcontent">
-          <p>Game Begins Students SU Theater/Mentor Meeting &
-            Introductions SU 210 Landmark Room</p>
-        </div>
-        <div id="tab6" class="tabcontent">
-          <p>Speed Mentoring SU 215 Social Hall</p>
-        </div>
-        <div id="tab7" class="tabcontent">
-          <p>Break SU Lobby</p>
-        </div>
-        <div id="tab8" class="tabcontent">
-          <p>Mentor Huddles SU 145</p>
-        </div>
-        <div id="tab9" class="tabcontent">
-          <p> Lunch and Game Awards SU 215 Social Hall</p>
+            <div class="nav bar">
+                <nav>
+                    <ul>
+                        <!-- <li><a href="#" class ="logo"">LOGO</a></li>
+                                  <li><a href="#mentors">Mentors</a></li>
+                                  <li><a href="#schedule">Schedule</a></li> -->
+                        <li>
+                            <a href="/login">Login</a>
+                        </li>
+                        <li>
+                            <a href="/game">Game</a>
+                        </li>
+                        <li>
+                            <a href="/leaderboard">Leaderboard</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
 
 
- 
-      <script
-        src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+        <div class="container" id="hero">
+            <div class="row">
+                <div id="heroInfo" class="col-md-6" style="padding-top: 50px">
+                    <h2 style="text-align: center;">Welcome to the Next-Level Leadership Conference!<br></h3>
+                    <p>Here you will find world-renowned speakers and mentors who
+                                  will help you hone your leadership skills. Get ready to make connections, learn new things, and take your
+                                  leadership to the next level!</p>
+                </div>
+                <div id="hero-text" class="col-md-6" style="min-height: 400px; padding-top: 30px; font-family: Arial, Helvetica, sans-serif;"><img width="100%" src="assets/img/others/image1.svg"></div>
+            </div>
 
-      <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
-      <script src='https://cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/slick.min.js'></script>
-      <script>
-        $(document).ready(function () {
 
-          var cards = [
-            { name: 'Ashleigh Bers', img: 'assets/img/mentors/ashleighBerst.jpg', dsc: 'VP sales' },
-            { name: 'Brandi Banks', img: 'assets/img/mentors/brandiBanks.jpg', dsc: 'Employer Partner for Internships' },
-            { name: 'Carl Lam', img: 'assets/img/mentors/Carl_Lam_Headshot.jpg', dsc: 'Resource Analyst/Meteorologist' },
-            { name: 'Chelsea Montrois', img: 'assets/img/mentors/chelseamontrois.jpeg', dsc: 'Product Designer' },
-            { name: 'Christine Marino', img: 'assets/img/mentors/christineMarino.jpeg', dsc: 'Sr manager' },
-            { name: 'Claire Stroh', img: 'assets/img/mentors/clairestroh.jpg', dsc: 'Director, Technology Talent Management' },
-            { name: 'Kathryn Couch', img: 'assets/img/mentors/CouchKathryn.jpg', dsc: 'Commericial Relationship Manager' },
-            { name: 'Erin Belile', img: 'assets/img/mentors/erinBelile.jpg', dsc: 'Erin Belile' },
-            { name: 'Hollis Paiquette', img: 'assets/img/mentors/hollisPaiquette.png', dsc: 'Junior Software Engineer' },
-            { name: 'Jasmine Foster', img: 'assets/img/mentors/JasmineFoster.jpg', dsc: 'Career Design Consultant' },
-            { name: 'Kameron Jackson', img: 'assets/img/mentors/KameronJackson.png', dsc: 'Kameron Jackson' },
-            { name: 'Megan Rechin', img: 'assets/img/mentors/MeganRechin.jpg', dsc: 'VP of Communications' },
-          ];
-          cards.forEach(function (t, i) {
-            var cardhtml = `<div class="card">
-    <h2 class="title">${t.name}</h2>
+            <div id="middleHero" ">
+                <h2 class="mentorTitle" id="mentorTitle">
+                    Our Mentors</h2>
+                <div class="row" id="mentors">
+
+                    <div class="card-slider"></div>
+                </div>
+                <div style="clear: both; padding-bottom: 40px; "></div>
+            </div>
+
+            <div class="schedule" id="schedule">
+                <div class="tab">
+                    <button class="tablinks" onclick="openschedule(event, 'tab1')" id="defaultOpen">Todays Schedule</button>
+                    <button class="tablinks" onclick="openschedule(event, 'tab2')">8:30 a.m. - 9:00 a.m</button>
+                    <button class="tablinks" onclick="openschedule(event, 'tab2')">9:00 a.m. - 9:45 a.m</button>
+                    <button class="tablinks" onclick="openschedule(event, 'tab3')">9:45 a.m. - 10:00 a.m</button>
+                    <button class="tablinks" onclick="openschedule(event, 'tab4')">9:45 a.m. - 10:00 a.m</button>
+                    <button class="tablinks" onclick="openschedule(event, 'tab5')">10:00 a.m. - 10:30 a.m</button>
+                    <button class="tablinks" onclick="openschedule(event, 'tab6')">10:30 a.m. - 11:45 a.m</button>
+                    <button class="tablinks" onclick="openschedule(event, 'tab7')">11:45 a.m.-12:00 p.m</button>
+                    <button class="tablinks" onclick="openschedule(event, 'tab8')">12:00 p.m. - 1:00 p.m</button>
+                    <button class="tablinks" onclick="openschedule(event, 'tab9')">1:00 p.m.-2:00 p.m</button>
+                </div>
+
+
+                <div id="tab1" class="tabcontent">
+                    <p style="text-align: center; position:relative;top:40px;">Student* and Mentor Check-in SU Lobby
+                        <br>(*Students check in by 8:45 a.m. for BONUS tie-breaker points)
+                    </p>
+                </div>
+
+                <div id="tab2" class="tabcontent">
+                    <p style="text-align: center; position:relative;top:40px;">
+                        Coffee and Networking Activity SU Lobby</p>
+                </div>
+
+                <div id="tab3" class="tabcontent">
+                    <p style="text-align: center; position:relative;top:40px;">Welcome SU Theater</p>
+                </div>
+
+                <div id="tab4" class="tabcontent">
+                    <p style="text-align: center; position:relative;top:40px;">Welcome SU Theater</p>
+                </div>
+                <div id="tab5" class="tabcontent">
+                    <p style="text-align: center; position:relative;top:40px;">Game Begins Students SU Theater/Mentor Meeting &
+                                    Introductions SU 210 Landmark Room</p>
+                </div>
+                <div id="tab6" class="tabcontent">
+                    <p style="text-align: center; position:relative;top:40px;">Speed Mentoring SU 215 Social Hall</p>
+                </div>
+                <div id="tab7" class="tabcontent">
+                    <p style="text-align: center; position:relative;top:40px;">Break SU Lobby</p>
+                </div>
+                <div id="tab8" class="tabcontent">
+                    <p style="text-align: center; position:relative;top:40px;">Mentor Huddles SU 145</p>
+                </div>
+                <div id="tab9" class="tabcontent">
+                    <p style="text-align: center; position:relative;top:40px;">
+                        Lunch and Game Awards SU 215 Social Hall</p>
+                </div>
+
+
+                <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+                <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+                <script src='https://cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/slick.min.js'></script>
+                <script>
+                    $(document).ready(function () {
+
+                        var cards = [
+                            {
+                                name: 'Ashleigh Bers',
+                                img: 'assets/img/mentors/ashleighBerst.jpg',
+                                dsc: 'VP sales'
+                            },
+                            {
+                                name: 'Brandi Banks',
+                                img: 'assets/img/mentors/brandiBanks.jpg',
+                                dsc: 'Employer Partner for Internships'
+                            },
+                            {
+                                name: 'Carl Lam',
+                                img: 'assets/img/mentors/Carl_Lam_Headshot.jpg',
+                                dsc: 'Resource Analyst/Meteorologist'
+                            },
+                            {
+                                name: 'Chelsea Montrois',
+                                img: 'assets/img/mentors/chelseamontrois.jpeg',
+                                dsc: 'Product Designer'
+                            }, {
+                                name: 'Christine Marino',
+                                img: 'assets/img/mentors/christineMarino.jpeg',
+                                dsc: 'Sr manager'
+                            }, {
+                                name: 'Claire Stroh',
+                                img: 'assets/img/mentors/clairestroh.jpg',
+                                dsc: 'Director, Technology Talent Management'
+                            }, {
+                                name: 'Kathryn Couch',
+                                img: 'assets/img/mentors/CouchKathryn.jpg',
+                                dsc: 'Commericial Relationship Manager'
+                            }, {
+                                name: 'Erin Belile',
+                                img: 'assets/img/mentors/erinBelile.jpg',
+                                dsc: 'Erin Belile'
+                            }, {
+                                name: 'Hollis Paiquette',
+                                img: 'assets/img/mentors/hollisPaiquette.png',
+                                dsc: 'Junior Software Engineer'
+                            }, {
+                                name: 'Jasmine Foster',
+                                img: 'assets/img/mentors/JasmineFoster.jpg',
+                                dsc: 'Career Design Consultant'
+                            }, {
+                                name: 'Kameron Jackson',
+                                img: 'assets/img/mentors/KameronJackson.png',
+                                dsc: 'Kameron Jackson'
+                            }, {
+                                name: 'Megan Rechin',
+                                img: 'assets/img/mentors/MeganRechin.jpg',
+                                dsc: 'VP of Communications'
+                            },
+                        ];
+                        cards.forEach(function (t, i) {
+                            var cardhtml = `<div class="card">
+    <h2 class="title">${
+                                t.name
+                            }</h2>
 
     <div class="image">
-      <img src="${t.img}" alt="${t.dsc}">
+      <img src="${
+                                t.img
+                            }" alt="${
+                                t.dsc
+                            }">
     </div>
-  <p class="description">${t.dsc}</p>
+  <p class="description">${
+                                t.dsc
+                            }</p>
 </div>`
-            $('.card-slider').append(cardhtml)
-          })
-          $('.card-slider').slick({
-            dots: false,
-            arrows: true,
-            slidesToShow: 5,
-            infinite: false,
-            responsive: [
-              {
-                breakpoint: 1024,
-                settings: {
-                  slidesToShow: 3
-                }
-              },
+                            $('.card-slider').append(cardhtml)
+                        })
+                        $('.card-slider').slick({
+                            dots: false,
+                            arrows: true,
+                            slidesToShow: 5,
+                            infinite: false,
+                            responsive: [
+                                {
+                                    breakpoint: 1024,
+                                    settings: {
+                                        slidesToShow: 3
+                                    }
+                                }, {
+                                    breakpoint: 800,
+                                    settings: {
+                                        slidesToShow: 2
+                                    }
+                                }, {
+                                    breakpoint: 600,
+                                    settings: {
+                                        slidesToShow: 1
+                                    }
+                                }
+                            ]
+                        });
 
 
-              {
-                breakpoint: 800,
-                settings: {
-                  slidesToShow: 2
-                }
-              },
+                        $('.nav a').on('click', function (e) {
+                            e.preventDefault();
 
+                            var targetEle = this.hash;
+                            var $targetEle = $(targetEle);
 
-              {
-                breakpoint: 600,
-                settings: {
-                  slidesToShow: 1
-                }
-              }]
-          });
+                            $('html, body').stop().animate({
+                                'scrollTop': $targetEle.offset().top
+                            }, 800, 'swing', function () { // window.location.hash = targetEle;
+                            });
+                        });
 
+                    });
+                    function openschedule(evt, cityName) {
+                        var i,
+                            tabcontent,
+                            tablinks;
+                        tabcontent = document.getElementsByClassName("tabcontent");
+                        for (i = 0; i < tabcontent.length; i++) {
+                            tabcontent[i].style.display = "none";
+                        }
+                        tablinks = document.getElementsByClassName("tablinks");
+                        for (i = 0; i < tablinks.length; i++) {
+                            tablinks[i].className = tablinks[i].className.replace(" active", "");
+                        }
+                        document.getElementById(cityName).style.display = "block";
+                        evt.currentTarget.className += " active";
+                    }
 
-          $('.nav a').on('click', function (e) {
-    e.preventDefault();
-  
-    var targetEle = this.hash;
-    var $targetEle = $(targetEle);
-  
-    $('html, body').stop().animate({
-        'scrollTop': $targetEle.offset().top
-    }, 800, 'swing', function () {
-       // window.location.hash = targetEle;
-    });
-});
-
-        });
-        function openschedule(evt, cityName) {
-          var i, tabcontent, tablinks;
-          tabcontent = document.getElementsByClassName("tabcontent");
-          for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-          }
-          tablinks = document.getElementsByClassName("tablinks");
-          for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-          }
-          document.getElementById(cityName).style.display = "block";
-          evt.currentTarget.className += " active";
-        }
-
-        // Get the element with id="defaultOpen" and click on it
-        document.getElementById("defaultOpen").click();
-      </script>
-    </div>
-  </div>
-</body>
+                    // Get the element with id="defaultOpen" and click on it
+                    document.getElementById("defaultOpen").click();
+                </script>
+            </div>
+        </div>
+    </body>
 
 </html>
