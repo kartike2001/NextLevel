@@ -1,28 +1,70 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>My Login and Registration page</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
-  <body>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Next-Level Leadership Login</title>
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-v4-grid-only@1.0.0/dist/bootstrap-grid.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/slick.min.css'>
+  <link rel='stylesheet'
+    href='https:////cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/accessible-slick-theme.min.css'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+
+</head>
+
+<body>
+   <div class="header">
+   
+    <div class="nav bar">
+      <nav>
+        <ul>
+          <!-- <li><a href="#" class ="logo"">LOGO</a></li>
+          <li><a href="#mentors">Mentors</a></li>
+          <li><a href="#schedule">Schedule</a></li> -->
+          <li><a href="/login">Login</a></li>
+          <li><a href="/game">Game</a></li>
+          <li><a href="/leaderboard">Leaderboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+    <div>
     <div class="login-box">
-      <h1>Login</h1>
-       <form action="/loginuser" method="post" enctype="multipart/form-data">
-        <label for="usernamel">Username</label><br>
-        <input type="text" id="usernamel" name="usernamel"><br>
-        <label for="regpass">Password</label><br>
+<div  class="flex">
+      <h4 data-target="login">Login</h4>
+      <h4 data-target="register">Register</h4>
+    </div>
+       <form class="login active" action="/loginuser" method="post" enctype="multipart/form-data">
+        <label for="usernamel">Team Name</label><br>
+        <input type="text" id="usernamel" name="usernamel" style="padding-bottom: 20px;;"><br>
+        <label for="regpass" style="padding-top:20px;">Password</label><br>
         <input type="password" id="regpassl" name="regpassl"><br><br>
         <input type="submit" value="Login">
     </form>
+    <form class="register" action="/registeruser" method="post" enctype="multipart/form-data">
+      <label for="username">Team Name</label><br>
+      <input type="text" id="username" name="username"><br>
+      <label for="regpass">Password</label><br>
+      <input type="password" id="regpass" name="regpass"><br><br>
+      <input type="submit" value="Register">
+  </form>
     </div>
-    <div class="register-box">
-      <h1>Register</h1>
-      <form action="/registeruser" method="post" enctype="multipart/form-data">
-        <label for="username">Username</label><br>
-        <input type="text" id="username" name="username"><br>
-        <label for="regpass">Password</label><br>
-        <input type="password" id="regpass" name="regpass"><br><br>
-        <input type="submit" value="Register">
-    </form>
-    </div>
+  
+  </div>
+  <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+  <script>
+    $(document).ready(function () {
+      $('.login-box h4').click(function(){
+        $('form').hide()
+        $('.'+$(this).data('target')).fadeIn()
+      
+      })
+    })
+    </script>
   </body>
 </html>

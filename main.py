@@ -8,7 +8,7 @@ from pymongo import MongoClient
 import json
 import hashlib
 import base64
-
+import re
 import helpers
 
 
@@ -25,7 +25,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         usertoken = db["usertoken"]
         teampts = db["teampts"]
         headersDict = helpers.requestParser(self.data)
-
+        print(self.data)
         def GETfunctionjs():
             with open('functions.js', 'r') as file:
                 jsLen = str(len(file.read()))
@@ -271,10 +271,35 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                 teampts.insert_one({user: "Q10"})
             self.request.sendall(
                 b"HTTP/1.1 301 Moved Permanently\r\nLocation: /leaderboard\r\nContent-Length: 0\r\n\r\n")
+        
+        elif b"GET /assets/img/mentors/" in self.data:
+            data = self.data.decode().split(' ')
+            filename = data[1].split('/')[-1]
+            if exists('assets/img/mentors/' + filename):
+                with open('assets/img/mentors/' + filename, 'rb') as file:
+                    imagelen = str(len(file.read()))
+                with open('assets/img/mentors/' + filename, 'rb') as file:
+                    self.request.sendall(
+                        b"HTTP/1.1 200 OK\r\nContent-Length: " + imagelen.encode() + b"\r\nContent-Type: image/jpeg; charset=utf-8; \r\nX-Content-Type-Options: nosniff\r\n\r\n" + file.read())
+            else:
+                self.request.sendall(
+                    "HTTP/1.1 404 Not Found\r\nContent-Length: 25\r\nContent-Type: text/plain; charset=utf-8\r\n\r\nError 404: Page Not Found".encode())
+        elif b"GET /assets/img/others/" in self.data:
+            data = self.data.decode().split(' ')
+            filename = data[1].split('/')[-1]
+            if exists('assets/img/others/' + filename):
+                with open('assets/img/others/'+ filename, 'rb') as file:
+                    imagelen = str(len(file.read()))
+                with open('assets/img/others/'+ filename, 'rb') as file:
+                    self.request.sendall(
+                        b"HTTP/1.1 200 OK\r\nContent-Length: " + imagelen.encode() + b"\r\nContent-Type: image/jpeg; charset=utf-8; \r\nX-Content-Type-Options: nosniff\r\n\r\n" + file.read())
+            else:
+                self.request.sendall(
+                    "HTTP/1.1 404 Not Found\r\nContent-Length: 25\r\nContent-Type: text/plain; charset=utf-8\r\n\r\nError 404: Page Not Found".encode())
 
         else:
             self.request.sendall(
-                "HTTP/1.1 404 OK\r\nContent-Length: 25\r\nContent-Type: text/plain; charset=utf-8\r\n\r\nError 404: Page Not Found".encode())
+                "HTTP/1.1 404 Not Found\r\nContent-Length: 25\r\nContent-Type: text/plain; charset=utf-8\r\n\r\nError 404: Page Not Found".encode())
 
 
 if __name__ == "__main__":

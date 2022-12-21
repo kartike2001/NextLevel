@@ -1,24 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0bb99104-6caa-48d9-97f3-3031b4fa4854" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/landingpage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mentors.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/schedule.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/style.scss" afterDir="false" />
-    </list>
+    <list default="true" id="0bb99104-6caa-48d9-97f3-3031b4fa4854" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -36,7 +23,6 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\karti\Desktop\Classes\Leadership\NextLevel\assets\img\others" />
       <recent name="C:\Users\karti\Desktop\d2 2\d2\assets\img\others" />
     </key>
   </component>
@@ -77,8 +63,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1671637278198</updated>
-      <workItem from="1671637279891" duration="1677000" />
-      <workItem from="1671639369819" duration="491000" />
+      <workItem from="1671637279891" duration="2662000" />
     </task>
     <servers />
   </component>

@@ -6,6 +6,7 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 40px;
+  display: contents;
 }
 
 .navbar {
@@ -40,16 +41,15 @@ li {
 
 body {
   font-family: "Open Sans", sans-serif;
-  background-color: #005bbb;
-  text-align: center;
-}
+  margin: 0;
+ }
 
 .game {
   background-color: #ffffff;
   padding: 20px;
-  width: 800px;
-  margin: 0 auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 592px;
+  margin: auto;
+  box-shadow: 0 0 10px rgb(0 0 0 / 50%);
 }
 
 h1 {
@@ -61,21 +61,20 @@ h1 {
 }
 
 label {
-  color: #ffc72c;
-  font-weight: bold;
+  color: #005bbb;
   font-size: 20px;
   margin: 10px 0;
   display: block;
+  font-weight: 100;
 }
 
-input {
-  width: 600px;
-  padding: 5px 10px;
+input{width: 100%;
+  padding: 10px 10px;
   border-radius: 5px;
-  border: 1px solid #ebec00;
-  font-size: 16px;
+  border: none;
+  box-shadow: 0 2px 5px 1px #1e1e1e33;
+  outline: none;
 }
-
 input[type=submit] {
   background-color: #00a69c;
   color: #ffffff;
@@ -85,5 +84,264 @@ input[type=submit] {
   border: none;
   cursor: pointer;
 }
+.header{
+  background: #005bbb;
+}
+.nav{padding: 20px;
+  text-align: right;}
+  .nav a{text-decoration: none;
+    color: #fff;}
+.flex{display: flex;}
 
-/*# sourceMappingURL=style.css.map */
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+.mentors{    margin: auto;
+  width: 963px;
+  display: flow-root;}
+
+
+  .tab {
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 30%;
+    height: 300px;
+    overflow: scroll;
+  }
+  .schedule{display: flex;
+    justify-content: center;
+    margin: auto;}
+  /* Style the buttons inside the tab */
+  .tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current "tab button" class */
+  .tab button.active {
+    background-color: #ccc;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    float: left;
+    padding: 0px 12px;
+    border: 1px solid #ccc;
+    width: 70%;
+    border-left: none;
+    height: 300px;
+    background: #005bbb;
+    color: #fff;
+  }
+
+
+
+
+  .card-slider {
+    max-width: 960px;
+    margin: 0 auto;
+    /** Main link */
+    /** Product title */
+    /** Product image */
+    /** Product description */
+    /** Floating "sale" badge */
+    /** Price */
+    /** Rating */
+    /** "30 reviews" link next to stars */
+    /** Hover state = add box shadow, underline the title */
+  }
+  @media screen and (max-width: 1024px) {
+    .card-slider {
+      width: 80%;
+    }
+  }
+  .card-slider .slick-prev-icon,
+  .card-slider .slick-next-icon {
+    color: black;
+  }
+  .card-slider .slick-slide {
+    padding: 0 10px;
+  }
+  .card-slider .card {
+    position: relative;
+    display: flex !important;
+    flex-direction: column;
+    height: 250px;
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: white;
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.9);
+    transition: all 0.1s linear;
+  }
+  @media screen and (max-width: 600px) {
+    .card-slider .card {
+      height: auto;
+    }
+  }
+  .card-slider .card .main-link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-slider .card .main-link:focus {
+    outline: none;
+  }
+  .card-slider .card .main-link:focus .title {
+    outline: 3px dashed orange;
+    outline-offset: -4px;
+    color: royalblue;
+    text-decoration: underline;
+  }
+  .card-slider .card .title {
+    color: #000;
+    margin: 0;
+    padding: 10px 10px 5px 10px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .card-slider .card .title:hover {
+    text-decoration: underline;
+  }
+  .card-slider .card .image {
+    /** Visually place the image above all other content (like the heading) in the parent flex container (.card). */
+    order: -1;
+    position: relative;
+    height: 180px;
+    padding: 2px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .card-slider .card .image img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    transition: all 0.3s ease-in-out;
+  }
+  .card-slider .card .image:hover img {
+    width: 110%;
+    height: 110%;
+  }
+  .card-slider .card .description {
+    margin: 7px 10px 15px 10px;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+  .card-slider .card .badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    z-index: 1;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    background-color: #c80000;
+  }
+  .card-slider .card .price {
+    padding-left: 10px;
+  }
+  .card-slider .card .price .new-price {
+    font-weight: bold;
+  }
+  .card-slider .card .price .original-price {
+    margin-left: 5px;
+    font-size: 14px;
+    font-style: italic;
+    opacity: 0.5;
+    text-decoration: line-through;
+  }
+  .card-slider .card .rating {
+    margin: 10px 0 15px 10px;
+    color: orange;
+    font-size: 12px;
+  }
+  .card-slider .card .rating .reviews-link {
+    color: rgba(0, 0, 0, 0.6);
+    margin-left: 5px;
+  }
+  .card-slider .card .rating .reviews-link:hover {
+    color: black;
+  }
+  .card-slider .card .rating .reviews-link:focus {
+    color: royalblue;
+    outline: 3px dotted royalblue;
+    outline-offset: 2px;
+  }
+  .card-slider .card:hover {
+    border-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+  }
+  .card-slider .card:hover .image img,
+  .card-slider .card:focus .image img {
+    filter: grayscale(0);
+  }
+  .card-slider .card a:focus {
+    outline: none;
+  }
+  
+  /**
+    Demo only
+  */
+  .note {
+    text-align: center;
+    font-size: 14px;
+    max-width: 960px;
+    padding: 40px 20px;
+    margin: 0 auto;
+    opacity: 0.8;
+  }
+  .note a {
+    color: black;
+    font-weight: bold;
+  }
+  .note a:hover, .note a:focus {
+    color: royalblue;
+  }
+  .login ,.register{display:none}
+  .active{display: block;}
+  .login-box{ width: 350px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 3px 8px 5px #eee;
+    margin-top: 50px;}
+    .login-box .flex { 
+      justify-content: space-around;}
+      .login-box h4{cursor: pointer;}
+.tabcontent p{margin: 0 !important;text-align: left;}
