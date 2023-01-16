@@ -4,6 +4,22 @@
       <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
+    <section class="top-nav">
+    <div>
+      University at Buffalo
+    </div>
+    <input id="menu-toggle" type="checkbox" />
+    <label class='menu-button-container' for="menu-toggle">
+    <div class='menu-button'></div>
+  </label>
+    <ul class="menu">
+      <li><a href="/">Home</a></li>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/game">Game</a></li>
+      <li><a href="/leaderboard">Leaderboard</a></li>
+  
+    </ul>
+  </section>
   <div class="game">
     
     <div class="teamName" style="text-align: center";><h1> Hey {{team}}</h1></div>

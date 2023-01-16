@@ -12,7 +12,7 @@
         <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/slick.min.css'>
         <link rel='stylesheet' href='https:////cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/accessible-slick-theme.min.css'>
         <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
-
+ 
     </head>
 
     <body>
@@ -32,20 +32,31 @@
     </ul>
   </section>
 
-
+<section style="background-color: #005bbb;">
         <div class="container" id="hero">
             <div class="row">
                 <div id="heroInfo" class="col-md-6" style="padding-top: 50px">
-                    <h2 style="text-align: center;">Welcome to the Next-Level Leadership Conference!<br></h3>
+                    <h2 style="text-align: center; color: #fff;  font-size:45px;font-weight:700;font-family: 'Montserrat', sans-serif;" >Welcome to the Next-Level Leadership Conference!<br></h3>
                     <p>Here you will find world-renowned speakers and mentors who
                                   will help you hone your leadership skills. Get ready to make connections, learn new things, and take your
                                   leadership to the next level!</p>
                 </div>
-                <div id="hero-text" class="col-md-6" style="min-height: 400px; padding-top: 30px; font-family: Arial, Helvetica, sans-serif;"><img width="100%" src="assets/img/others/image1.svg"></div>
+                <div id="hero-text" class="col-md-6" style="min-height:200px; padding-top: 30px; font-family: Arial, Helvetica, sans-serif;"><img width="100%" src="assets/img/others/image1.svg"></div>
             </div>
 
 
+<section>
+
+</section>
+           
+
+            
+</section>
+
+
+
             <div id="middleHero" ">
+                
                 <h2 class="mentorTitle" id="mentorTitle">
                     Our Mentors</h2>
                 <div class="row" id="mentors">
@@ -118,54 +129,67 @@
                             {
                                 name: 'Ashleigh Bers',
                                 img: 'assets/img/mentors/ashleighBerst.jpg',
-                                dsc: 'VP sales'
+                                dsc: 'VP sales',
+                                linked: 'https://www.youtube.com/watch?v=64iS4iT4UNw&ab_channel=PowerfulJRE'
                             },
                             {
                                 name: 'Brandi Banks',
                                 img: 'assets/img/mentors/brandiBanks.jpg',
-                                dsc: 'Employer Partner for Internships'
+                                dsc: 'Employer Partner for Internships',
+                                linked: 'hi'
+                                
                             },
                             {
                                 name: 'Carl Lam',
                                 img: 'assets/img/mentors/Carl_Lam_Headshot.jpg',
-                                dsc: 'Resource Analyst/Meteorologist'
+                                dsc: 'Resource Analyst/Meteorologist',
+                                linked: 'hi'
                             },
                             {
                                 name: 'Chelsea Montrois',
                                 img: 'assets/img/mentors/chelseamontrois.jpeg',
-                                dsc: 'Product Designer'
+                                dsc: 'Product Designer',
+                                linked: 'hi'
                             }, {
                                 name: 'Christine Marino',
                                 img: 'assets/img/mentors/christineMarino.jpeg',
-                                dsc: 'Sr manager'
+                                dsc: 'Sr manager',
+                                linked: 'hi'
                             }, {
                                 name: 'Claire Stroh',
                                 img: 'assets/img/mentors/clairestroh.jpg',
-                                dsc: 'Director, Technology Talent Management'
+                                dsc: 'Director, Technology Talent Management',
+                                linked: 'hi'
                             }, {
                                 name: 'Kathryn Couch',
                                 img: 'assets/img/mentors/CouchKathryn.jpg',
-                                dsc: 'Commericial Relationship Manager'
+                                dsc: 'Commericial Relationship Manager',
+                                linked: 'hi'
                             }, {
                                 name: 'Erin Belile',
                                 img: 'assets/img/mentors/erinBelile.jpg',
-                                dsc: 'Erin Belile'
+                                dsc: 'Erin Belile',
+                                linked: 'hi'
                             }, {
                                 name: 'Hollis Paiquette',
                                 img: 'assets/img/mentors/hollisPaiquette.png',
-                                dsc: 'Junior Software Engineer'
+                                dsc: 'Junior Software Engineer',
+                                linked: 'hi'
                             }, {
                                 name: 'Jasmine Foster',
                                 img: 'assets/img/mentors/JasmineFoster.jpg',
-                                dsc: 'Career Design Consultant'
+                                dsc: 'Career Design Consultant',
+                                linked: 'hi'
                             }, {
                                 name: 'Kameron Jackson',
                                 img: 'assets/img/mentors/KameronJackson.png',
-                                dsc: 'Kameron Jackson'
+                                dsc: 'Kameron Jackson',
+                                linked: 'hi'
                             }, {
                                 name: 'Megan Rechin',
                                 img: 'assets/img/mentors/MeganRechin.jpg',
-                                dsc: 'VP of Communications'
+                                dsc: 'VP of Communications',
+                                linked: 'hi'
                             },
                         ];
                         cards.forEach(function (t, i) {
@@ -181,9 +205,17 @@
                                 t.dsc
                             }">
     </div>
-  <p class="description">${
+  <p class="description">${ 
                                 t.dsc
                             }</p>
+    <div class="button-28-div">
+        <button onclick="window.location.href=${ 
+                t.linked
+        }" class = "button-28" role = "button">Connect</button>
+    </div>
+                       
+
+
 </div>`
                             $('.card-slider').append(cardhtml)
                         })
@@ -191,7 +223,7 @@
                             dots: false,
                             arrows: true,
                             slidesToShow: 5,
-                            infinite: false,
+                            infinite: true,
                             responsive: [
                                 {
                                     breakpoint: 1024,

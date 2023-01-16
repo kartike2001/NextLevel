@@ -1,3 +1,5 @@
+
+
 h1 {
   text-align: center;
   color: #ebec00;
@@ -10,13 +12,15 @@ h1 {
 }
 
 .navbar {
-  background-color: #ebec00;
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding: 10px 0;
   margin: 0 auto;
   width: 500px;
+  text-decoration:none;
+  color: #ffffff;
+  
 }
 
 .navbar a {
@@ -40,8 +44,9 @@ li {
 }
 
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Prompt", sans-serif;
   margin: 0;
+  background-color: rgb(239, 245, 244);
  }
 
 .game {
@@ -179,7 +184,16 @@ div.desc {
     text-align: center;
   }
 
+  .card{
+    border-radius: 75px;
+    width : 190px; 
+    height : 254px;
+    background : #f5f5f5;
+    padding-top: 10%;
+    transition : box-shadow .3s ease,
+    transform .2s ease;
 
+  }
 
   .card-slider {
     max-width: 960px;
@@ -202,8 +216,8 @@ div.desc {
     position: relative;
     display: flex !important;
     flex-direction: column;
-    height: 250px;
-    border-radius: 3px;
+    height: 320px;
+    border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.2);
     background-color: white;
     text-decoration: none;
@@ -224,37 +238,50 @@ div.desc {
     outline: none;
   }
   .card-slider .card .main-link:focus .title {
-    outline: 3px dashed orange;
+    outline: 3px dashed rgb(39, 110, 154);
     outline-offset: -4px;
     color: royalblue;
     text-decoration: underline;
   }
   .card-slider .card .title {
     color: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content : center;
+    align-items : center;
+    transition : transform .1s ease,
+    opacity .1s ease;
+
     margin: 0;
     padding: 10px 10px 5px 10px;
     font-size: 16px;
     font-weight: bold;
-text-align: center;
+  text-align: center;
 
   }
-  .card-slider .card .title:hover {
-    text-decoration: underline;
+  .card-slider .card:hover {
+    background-color: rgb(225, 230, 237);
+    
   }
+
+
   .card-slider .card .image {
     /** Visually place the image above all other content (like the heading) in the parent flex container (.card). */
     order: -1;
     position: relative;
     height: 180px;
-    padding: 2px;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius : 50%;
+
   }
   .card-slider .card .image img {
-    width: 100%;
-    height: 100%;
+    width: 65%;
+    height: 75%;
+    border-radius : 50%;
+
     -o-object-fit: cover;
        object-fit: cover;
     transition: all 0.3s ease-in-out;
@@ -295,7 +322,7 @@ text-align: center;
   }
   .card-slider .card .rating {
     margin: 10px 0 15px 10px;
-    color: orange;
+    color: rgb(39, 85, 125);
     font-size: 12px;
   }
   .card-slider .card .rating .reviews-link {
@@ -311,8 +338,8 @@ text-align: center;
     outline-offset: 2px;
   }
   .card-slider .card:hover {
-    border-color: rgba(0, 0, 0, 0.4);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+    border-color: rgba(22, 24, 106, 0.4);
+    box-shadow: 0 0 10px 0 rgba(19, 50, 112, 0.15);
   }
   .card-slider .card:hover .image img,
   .card-slider .card:focus .image img {
@@ -321,6 +348,64 @@ text-align: center;
   .card-slider .card a:focus {
     outline: none;
   }
+  .button-28-div{
+    padding-left: 20% ;
+    padding-right: 20%;
+    padding-bottom: 10%;
+
+       
+
+
+  }
+
+
+
+.button-28 {
+  display : block;
+  margin: 0 auto;
+  justify-content : center;
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: ;
+  color: #3B3B3B;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 6px 4px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+  will-change: transform;
+}
+
+.button-28:disabled {
+  pointer-events: none;
+}
+
+.button-28:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-28:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
   
   /**
     Demo only
@@ -342,7 +427,8 @@ text-align: center;
   }
   .login ,.register{display:none}
   .active{display: block;}
-  .login-box{ width: 350px;
+  .login-box{ 
+    width: 350px;
     margin: auto;
     padding: 20px;
     box-shadow: 0 3px 8px 5px #eee;
@@ -366,6 +452,34 @@ text-align: center;
   text-align: center;
 }
 
+
+
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180 deg);
+  }
+.wave svg {
+    position : relative;
+    display : block;
+    width : calc(104% + 1.3px);
+    height : 76px;
+    transform : rotateY(180deg);
+}
+.wave .shape-fill {
+    fill : #005BBB;
+}
+
+
+
+
+
+
 /* nav bar */
 @import url(https://fonts.googleapis.com/css?family=Raleway);
 h2 {
@@ -376,6 +490,12 @@ h2 {
 html, body {
   margin: 0;
   height: 100%;
+}
+section{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-self: start;
 }
 
 * {
@@ -389,9 +509,9 @@ html, body {
   align-items: center;
   justify-content: space-between;
   background-color: #6b369a;
-  background: #005BBB;
+  background: #fff;
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  color: #FFF;
+  color : #005bbb;
   height: 50px;
   padding: 1em;
 }
@@ -402,11 +522,21 @@ html, body {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  
+ 
 }
 
 .menu > li {
   margin: 0 1rem;
   overflow: hidden;
+  text-decoration: none;
+  color :#005bbb;
+
+}
+.menu a{
+  text-decoration:none;
+color : #005bbb;
+
 }
 
 .menu-button-container {
@@ -427,9 +557,10 @@ html, body {
 .menu-button::before,
 .menu-button::after {
   display: block;
-  background-color: #fff;
+  background-color : #005bbb;
+
   position: absolute;
-  height: 4px;
+  height: 4px,.;
   width: 30px;
   transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
   border-radius: 2px;
@@ -472,6 +603,7 @@ html, body {
     width: 100%;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
   }
   #menu-toggle ~ .menu li {
     height: 0;
@@ -507,3 +639,49 @@ html, body {
 
   }
 }
+
+/* login pill in button */
+.flex {
+  border-radius: 20px;
+  background-color: #005bbb;
+  color:white
+}
+
+
+
+
+
+/* leaderboard */
+.styled-table {
+    border-collapse:collapse;
+    margin : 25px 0;
+    font-size : 0.9em;
+    font-family : sans-serif;
+    min-width : 400px;
+    box-shadow : 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+.styled-table th,.style-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}.styled-table tbody tr :nth-of-type(even) {
+    background-color : #f3f3f3;
+}
+.styled-table tbody tr:last-of-type {
+    border-bottom : 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight : bold;
+    color : #009879;
+}
+
