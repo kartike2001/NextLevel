@@ -70,18 +70,24 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                 ht = file.read()
             if b'cookie' in headersDict:
                 allcookies = helpers.stringTomap(headersDict[b'cookie'])
-            if b'cookie' not in headersDict:
-                ht = ht.replace("{{team}}", user)
-                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(
-                    len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=1; Max-Age=3600;\r\nX-Content-Type-Options: nosniff;\r\n\r\n" + ht).encode())
-            elif int(allcookies[b'visits'].decode()) >= 1:
-                if b'token' in allcookies:
-                    user = usertoken.find_one({"token": allcookies[b'token'].decode()})["username"].decode()
-                    ht = ht.replace("{{team}}", user)
+                if int(allcookies[b'visits'].decode()) >= 1:
+                    if b'token' in allcookies:
+                        user = usertoken.find_one({"token": allcookies[b'token'].decode()})["username"].decode()
+                        ht = ht.replace("{{team}}", user)
+                    else:
+                        user = '<button onclick="window.location.href="/login"">Login</button>'
+                        ht = ht.replace("{{team}}", user)
                 self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(
                     len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=" + str(int(
                     allcookies[
                         b'visits'].decode()) + 1) + "; Max-Age=3600;\r\nX-Content-Type-Options: nosniff;\r\n\r\n" + ht).encode())
+            if b'cookie' not in headersDict:
+                ht = ht.replace("{{team}}", user)
+                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(
+                    len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=1; Max-Age=3600;\r\nX-Content-Type-Options: nosniff;\r\n\r\n" + ht).encode())
+
+
+
 
         elif b"GET /leaderboard HTTP/1.1" in self.data:
             allcookies = {}
@@ -207,7 +213,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
             passwordHash = bcrypt.hashpw(password, salt)
             userpass.insert_one({"username": username, "password": passwordHash})
             self.request.sendall(
-                "HTTP/1.1 301 Moved Permanently\r\nLocation: /\r\nContent-Length: 0\r\n\r\n".encode())
+                "HTTP/1.1 301 Moved Permanently\r\nLocation: /login\r\nContent-Length: 0\r\n\r\n".encode())
 
         elif b"/loginuser" in self.data:
             multipart = self.data[self.data.index(b'\r\n\r\n'):].split(
@@ -287,12 +293,12 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         elif b"GET /assets/img/others/" in self.data:
             data = self.data.decode().split(' ')
             filename = data[1].split('/')[-1]
+            print(filename)
             if exists('assets/img/others/' + filename):
                 with open('assets/img/others/'+ filename, 'rb') as file:
                     imagelen = str(len(file.read()))
                 with open('assets/img/others/'+ filename, 'rb') as file:
-                    self.request.sendall(
-                        b"HTTP/1.1 200 OK\r\nContent-Length: " + imagelen.encode() + b"\r\nContent-Type: image/jpeg; charset=utf-8; \r\nX-Content-Type-Options: nosniff\r\n\r\n" + file.read())
+                    self.request.sendall(b"HTTP/1.1 200 OK\r\nContent-Length: " + imagelen.encode() + b"\r\nContent-Type: image/svg+xml; charset=utf-8; \r\nX-Content-Type-Options: nosniff\r\n\r\n" + file.read())
             else:
                 self.request.sendall(
                     "HTTP/1.1 404 Not Found\r\nContent-Length: 25\r\nContent-Type: text/plain; charset=utf-8\r\n\r\nError 404: Page Not Found".encode())
