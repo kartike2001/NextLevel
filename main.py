@@ -240,6 +240,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                     "utf-8"))
 
         elif b"/submit" in self.data:
+            print(self.data)
             multipart = self.data[self.data.index(b'\r\n\r\n'):].split(
                 b'--' + (headersDict[b'content-type'].split(b'boundary=')[1]))
             q1 = multipart[1].split(b'name="Q1"')[1].strip().decode()
@@ -250,8 +251,8 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
             q6 = multipart[6].split(b'name="Q6"')[1].strip().decode()
             q7 = multipart[7].split(b'name="Q7"')[1].strip().decode()
             q8 = multipart[8].split(b'name="Q8"')[1].strip().decode()
-            q9 = multipart[9].split(b'name="Q9"')[1].strip().decode()
-            q10 = multipart[10].split(b'name="Q10"')[1].strip().decode()
+            # q9 = multipart[9].split(b'name="Q9"')[1].strip().decode()
+            # q10 = multipart[10].split(b'name="Q10"')[1].strip().decode()
             allcookies = helpers.stringTomap(headersDict[b'cookie'])
             user = usertoken.find_one({"token": allcookies[b'token'].decode()})["username"].decode()
             teampts.find({})
@@ -271,10 +272,10 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                 teampts.insert_one({user: "Q7"})
             if q8 == "POL":
                 teampts.insert_one({user: "Q8"})
-            if q9 == "LOP":
-                teampts.insert_one({user: "Q9"})
-            if q10 == "951":
-                teampts.insert_one({user: "Q10"})
+            # if q9 == "LOP":
+            #     teampts.insert_one({user: "Q9"})
+            # if q10 == "951":
+            #     teampts.insert_one({user: "Q10"})
             self.request.sendall(
                 b"HTTP/1.1 301 Moved Permanently\r\nLocation: /leaderboard\r\nContent-Length: 0\r\n\r\n")
         
