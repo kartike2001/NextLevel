@@ -108,7 +108,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
             for p in list1:
                 for k in p:
                     h = p[k]
-                    if h == "Q1" or h == "Q2" or h == "Q3" or h == "Q4" or h == "Q5" or h == "Q6" or h == "Q7" or h == "Q8" or h == "Q9" or h == "Q10":
+                    if h == "Q1" or h == "Q2" or h == "Q3" or h == "Q4" or h == "Q5" or h == "Q6" or h == "Q7" or h == "Q8" or h == "Q9" or h == "Q10" or h == "Q11" or h == "Q12" or h == "Q13" or h == "Q14" or h == "Q15" or h == "Q16":
                         if k in leaderboarddic:
                             v = leaderboarddic[k] + 10
                             leaderboarddic[k] = v
@@ -251,8 +251,14 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
             q6 = multipart[6].split(b'name="Q6"')[1].strip().decode()
             q7 = multipart[7].split(b'name="Q7"')[1].strip().decode()
             q8 = multipart[8].split(b'name="Q8"')[1].strip().decode()
-            # q9 = multipart[9].split(b'name="Q9"')[1].strip().decode()
-            # q10 = multipart[10].split(b'name="Q10"')[1].strip().decode()
+            q9 = multipart[9].split(b'name="Q9"')[1].strip().decode()
+            q10 = multipart[10].split(b'name="Q10"')[1].strip().decode()
+            q11 = multipart[11].split(b'name="Q11"')[1].strip().decode()
+            q12 = multipart[12].split(b'name="Q12"')[1].strip().decode()
+            q13 = multipart[13].split(b'name="Q13"')[1].strip().decode()
+            q14 = multipart[14].split(b'name="Q14"')[1].strip().decode()
+            q15 = multipart[15].split(b'name="Q15"')[1].strip().decode()
+            q16 = multipart[16].split(b'name="Q16"')[1].strip().decode()
             allcookies = helpers.stringTomap(headersDict[b'cookie'])
             user = usertoken.find_one({"token": allcookies[b'token'].decode()})["username"].decode()
             teampts.find({})
@@ -272,10 +278,22 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                 teampts.insert_one({user: "Q7"})
             if q8 == "POL":
                 teampts.insert_one({user: "Q8"})
-            # if q9 == "LOP":
-            #     teampts.insert_one({user: "Q9"})
-            # if q10 == "951":
-            #     teampts.insert_one({user: "Q10"})
+            if q9 == "LOP":
+                teampts.insert_one({user: "Q9"})
+            if q10 == "951":
+                teampts.insert_one({user: "Q10"})
+            if q11 == "LOP":
+                teampts.insert_one({user: "Q11"})
+            if q12 == "951":
+                teampts.insert_one({user: "Q12"})   
+            if q13 == "LOP":
+                teampts.insert_one({user: "Q13"})
+            if q14 == "951":
+                teampts.insert_one({user: "Q14"})
+            if q15 == "LOP":
+                teampts.insert_one({user: "Q15"})
+            if q16 == "951":
+                teampts.insert_one({user: "Q16"})  
             self.request.sendall(
                 b"HTTP/1.1 301 Moved Permanently\r\nLocation: /leaderboard\r\nContent-Length: 0\r\n\r\n")
         
