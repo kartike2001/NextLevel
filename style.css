@@ -869,72 +869,72 @@ form {
   padding-left: 30px;
 }
 
-@media screen and(min-width: 320px) and(max-width: 768px) {
-  .navbar {
-    min-height: 105px;
-  }
-  .navbar-toggle {
-    margin-top: 50px;
-  }
-  .navbar-inverse .navbar-collapse,
-  .navbar-inverse .navbar-form {
-    border-color: #101010;
-    margin-top: 30px;
-  }
-  .navbar-inverse .navbar-toggle .icon-bar {
-    background-color: #005bbb;
-  }
+@media screen and (min-width: 320px) and (max-width: 768px)  { 
+.navbar{
+  min-height: 105px;
+}
+.navbar-toggle{
+  margin-top: 50px;
+}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+  border-color: #101010;
+  margin-top: 30px;
+}
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: #005bbb;
+}
 
-  .nav {
-    padding: 20px;
-    text-align: center;
-  }
-  .sec-3 h1 {
-    color: white;
-    display: block;
-    font-size: 45px;
-    text-align: left;
-    margin-top: 0;
-    padding-left: 0;
-    margin-left: 0;
-  }
-  .sec-3 p {
-    color: white;
-    text-align: left;
-    margin: 0;
-    display: block;
-    padding-right: 40px;
-  }
-  .mentorTitle {
-    text-align: left;
-    margin-bottom: 35px;
-    font-size: 40px;
-  }
+.nav {
+  padding: 20px;
+  text-align: center;
+}
+.sec-3 h1 {
+  color: white;
+  display: block;
+  font-size: 40px;
+  text-align: left;
+  margin-top: 0;
+  padding-left: 0px;
+  margin-left: 0px;
+}
+.sec-3 p {
+  color: white;
+  text-align: left;
+  margin: 0;
+  display: block;
+  padding-right: 40px;
+}
+.mentorTitle {
+  text-align: left;
+  margin-bottom: 35px;
+  font-size: 40px;
+}
 
-  .container-fluid {
-    overflow-x: hidden;
-  }
-  .slick-slide {
-    float: left;
-    height: 100%;
-    min-height: 1px;
-    display: none;
-    width: 300px !important;
-  }
-  .card-slider {
-    width: 100%;
-  }
-  .card-slider {
-    max-width: 300px;
-    margin: 0 auto;
-  }
+.container-fluid{
+  overflow-x: hidden;
+}
+.slick-slide {
+  float: left;
+  height: 100%;
+  min-height: 1px;
+  display: none;
+  width: 300px !important;
+}
+.card-slider {
+  width: 100%;
+}
+.card-slider {
+  max-width: 300px;
+  margin: 0 auto;
+}
 
-  .tabcontent {
-    width: 100%;
-  }
-  .tabcontent p {
-    text-align: center;
-  }
+.tabcontent {
+  width: 100%;
+}
+.tabcontent p {
+  text-align: center;
+}
+
 }
 .navbar-inverse .navbar-nav > li > a:focus,
 .navbar-inverse .navbar-nav > li > a:hover {
