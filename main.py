@@ -25,7 +25,6 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         usertoken = db["usertoken"]
         teampts = db["teampts"]
         headersDict = helpers.requestParser(self.data)
-        print(self.data)
         def GETfunctionjs():
             with open('functions.js', 'r') as file:
                 jsLen = str(len(file.read()))
@@ -103,7 +102,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                         if {k: i[k]} not in list1:
                             print({k: i[k]})
                             list1.append({k: i[k]})
-
+            score = ""
             leader = ""
             for p in list1:
                 for k in p:
@@ -116,8 +115,9 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                             leaderboarddic[k] = 10
 
             for i in leaderboarddic:
-                leader += str(i) + ":" + str(leaderboarddic[i]) + "<br>"
-            ht = ht.replace("{{leader}}", leader)
+                leader += str(i) + "<br>"
+                score +=  str(leaderboarddic[i]) + "<br>"
+            ht = ht.replace("{{leader}}", leader).replace("{{score}}",score)
             if b'cookie' in headersDict:
                 allcookies = helpers.stringTomap(headersDict[b'cookie'])
             if b'cookie' not in headersDict:
@@ -240,9 +240,11 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                     "utf-8"))
 
         elif b"/submit" in self.data:
-            print(self.data)
+            self.data += self.request.recv(2048)
             multipart = self.data[self.data.index(b'\r\n\r\n'):].split(
                 b'--' + (headersDict[b'content-type'].split(b'boundary=')[1]))
+            print(multipart)
+            print(len(multipart))
             q1 = multipart[1].split(b'name="Q1"')[1].strip().decode()
             q2 = multipart[2].split(b'name="Q2"')[1].strip().decode()
             q3 = multipart[3].split(b'name="Q3"')[1].strip().decode()
@@ -255,44 +257,45 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
             q10 = multipart[10].split(b'name="Q10"')[1].strip().decode()
             q11 = multipart[11].split(b'name="Q11"')[1].strip().decode()
             q12 = multipart[12].split(b'name="Q12"')[1].strip().decode()
-            q13 = multipart[13].split(b'name="Q13"')[1].strip().decode()
+            q13 = multipart[13].split(b'name="Q13"')
+            q13 = q13[1].strip().decode()
             q14 = multipart[14].split(b'name="Q14"')[1].strip().decode()
             q15 = multipart[15].split(b'name="Q15"')[1].strip().decode()
             q16 = multipart[16].split(b'name="Q16"')[1].strip().decode()
             allcookies = helpers.stringTomap(headersDict[b'cookie'])
             user = usertoken.find_one({"token": allcookies[b'token'].decode()})["username"].decode()
             teampts.find({})
-            if q1 == "XYZ":
+            if q1 == "AMDFH":
                 teampts.insert_one({user: "Q1"})
-            if q2 == "ZXY":
+            if q2 == "LNSGE":
                 teampts.insert_one({user: "Q2"})
-            if q3 == "123":
+            if q3 == "RMSGT":
                 teampts.insert_one({user: "Q3"})
-            if q4 == "RTY":
+            if q4 == "SZZJK":
                 teampts.insert_one({user: "Q4"})
-            if q5 == "YTR":
+            if q5 == "TMMAR":
                 teampts.insert_one({user: "Q5"})
-            if q6 == "MNO":
+            if q6 == "TVSGH":
                 teampts.insert_one({user: "Q6"})
-            if q7 == "NMO":
+            if q7 == "ALPXZ":
                 teampts.insert_one({user: "Q7"})
-            if q8 == "POL":
+            if q8 == "XMRKM":
                 teampts.insert_one({user: "Q8"})
-            if q9 == "LOP":
+            if q9 == "WHLPS":
                 teampts.insert_one({user: "Q9"})
-            if q10 == "951":
+            if q10 == "JSDRJ":
                 teampts.insert_one({user: "Q10"})
-            if q11 == "LOP":
+            if q11 == "XWEWY":
                 teampts.insert_one({user: "Q11"})
-            if q12 == "951":
+            if q12 == "PYMJT":
                 teampts.insert_one({user: "Q12"})   
-            if q13 == "LOP":
+            if q13 == "BWUFL":
                 teampts.insert_one({user: "Q13"})
-            if q14 == "951":
+            if q14 == "WPPQB":
                 teampts.insert_one({user: "Q14"})
-            if q15 == "LOP":
+            if q15 == "DHJPK":
                 teampts.insert_one({user: "Q15"})
-            if q16 == "951":
+            if q16 == "CXWKJ":
                 teampts.insert_one({user: "Q16"})  
             self.request.sendall(
                 b"HTTP/1.1 301 Moved Permanently\r\nLocation: /leaderboard\r\nContent-Length: 0\r\n\r\n")
@@ -312,7 +315,6 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         elif b"GET /assets/img/others/" in self.data:
             data = self.data.decode().split(' ')
             filename = data[1].split('/')[-1]
-            print(filename)
             if exists('assets/img/others/' + filename):
                 with open('assets/img/others/'+ filename, 'rb') as file:
                     imagelen = str(len(file.read()))
