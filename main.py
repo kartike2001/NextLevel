@@ -74,8 +74,8 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                         user = usertoken.find_one({"token": allcookies[b'token'].decode()})["username"].decode()
                         ht = ht.replace("{{team}}", user)
                     else:
-                        user = '<button onclick="window.location.href="/login"">Login</button>'
-                        ht = ht.replace("{{team}}", user)
+                        user = 'Please Login'
+                        ht = ht.replace("Team {{team}}", user)
                 self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(
                     len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=" + str(int(
                     allcookies[
@@ -107,7 +107,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
             for p in list1:
                 for k in p:
                     h = p[k]
-                    if h == "Q1" or h == "Q2" or h == "Q3" or h == "Q4" or h == "Q5" or h == "Q6" or h == "Q7" or h == "Q8" or h == "Q9" or h == "Q10" or h == "Q11" or h == "Q12" or h == "Q13" or h == "Q14" or h == "Q15" or h == "Q16":
+                    if h == "Q1" or h == "Q2" or h == "Q3" or h == "Q4" or h == "Q5" or h == "Q6" or h == "Q7" or h == "Q8" or h == "Q9" or h == "Q10" or h == "Q11" or h == "Q12" or h == "Q13" or h == "Q14" or h == "Q15":
                         if k in leaderboarddic:
                             v = leaderboarddic[k] + 10
                             leaderboarddic[k] = v
@@ -261,7 +261,6 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
             q13 = q13[1].strip().decode()
             q14 = multipart[14].split(b'name="Q14"')[1].strip().decode()
             q15 = multipart[15].split(b'name="Q15"')[1].strip().decode()
-            q16 = multipart[16].split(b'name="Q16"')[1].strip().decode()
             allcookies = helpers.stringTomap(headersDict[b'cookie'])
             user = usertoken.find_one({"token": allcookies[b'token'].decode()})["username"].decode()
             teampts.find({})
@@ -295,8 +294,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                 teampts.insert_one({user: "Q14"})
             if q15 == "DHJPK":
                 teampts.insert_one({user: "Q15"})
-            if q16 == "CXWKJ":
-                teampts.insert_one({user: "Q16"})  
+
             self.request.sendall(
                 b"HTTP/1.1 301 Moved Permanently\r\nLocation: /leaderboard\r\nContent-Length: 0\r\n\r\n")
         
