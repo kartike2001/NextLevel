@@ -243,7 +243,7 @@ div.desc {
   text-decoration: underline;
 }
 .card-slider .card .title {
-  color: #000;
+  color:rgb(28, 23, 23);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -877,7 +877,7 @@ form {
   margin-top: 50px;
 }
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
-  border-color: #101010;
+  border-color: #ffffff;
   margin-top: 30px;
 }
 .navbar-inverse .navbar-toggle .icon-bar {
