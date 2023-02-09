@@ -131,9 +131,10 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                             leaderboarddic[k] = v
                         else:
                             leaderboarddic[k] = 75
+            sortLead = helpers.sort_teams(leaderboarddic)
+            for i in sortLead:
+                leader += str(i) + " : " + str(sortLead[i]) + "<br>"
 
-            for i in leaderboarddic:
-                leader += str(i) + " : " + str(leaderboarddic[i]) + "<br>"
             ht = ht.replace("{{leader}}", leader)
             if b'cookie' in headersDict:
                 allcookies = helpers.stringTomap(headersDict[b'cookie'])

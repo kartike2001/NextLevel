@@ -63,3 +63,7 @@ def bytetobinary(byte):
         bitstring = str(byte % 2) + bitstring
         byte = byte >> 1
     return bitstring
+
+def sort_teams(teams):
+  sorted_teams = sorted(teams.items(), key=lambda x: x[1], reverse=True)
+  return dict(sorted_teams)
