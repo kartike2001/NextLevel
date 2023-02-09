@@ -107,17 +107,34 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
             for p in list1:
                 for k in p:
                     h = p[k]
-                    if h == "Q1" or h == "Q2" or h == "Q3" or h == "Q4" or h == "Q5" or h == "Q6" or h == "Q7" or h == "Q8" or h == "Q9" or h == "Q10" or h == "Q11" or h == "Q12" or h == "Q13" or h == "Q14" or h == "Q15":
+                    if h == "Q1" or h == "Q2" or h == "Q4" or h == "Q5" or h == "Q6" or h == "Q13" or h == "Q14" or h == "Q15":
                         if k in leaderboarddic:
                             v = leaderboarddic[k] + 10
                             leaderboarddic[k] = v
                         else:
                             leaderboarddic[k] = 10
+                    elif h == "Q3" or h == "Q8" or h == "Q9" or h == "Q10":
+                        if k in leaderboarddic:
+                            v = leaderboarddic[k] + 50
+                            leaderboarddic[k] = v
+                        else:
+                            leaderboarddic[k] = 50
+                    elif h == "Q7" or h == "Q11":
+                        if k in leaderboarddic:
+                            v = leaderboarddic[k] + 20
+                            leaderboarddic[k] = v
+                        else:
+                            leaderboarddic[k] = 20
+                    elif h == "Q12":
+                        if k in leaderboarddic:
+                            v = leaderboarddic[k] + 75
+                            leaderboarddic[k] = v
+                        else:
+                            leaderboarddic[k] = 75
 
             for i in leaderboarddic:
-                leader += str(i) + "<br>"
-                score +=  str(leaderboarddic[i]) + "<br>"
-            ht = ht.replace("{{leader}}", leader).replace("{{score}}",score)
+                leader += str(i) + " : " + str(leaderboarddic[i]) + "<br>"
+            ht = ht.replace("{{leader}}", leader)
             if b'cookie' in headersDict:
                 allcookies = helpers.stringTomap(headersDict[b'cookie'])
             if b'cookie' not in headersDict:
