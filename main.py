@@ -29,8 +29,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
             with open('functions.js', 'r') as file:
                 jsLen = str(len(file.read()))
             with open('functions.js', 'r') as file:
-                self.request.sendall((
-                                             "HTTP/1.1 200 OK\r\nContent-Length: " + jsLen + "\r\nContent-Type: text/javascript; charset=utf-8; \r\nX-Content-Type-Options: nosniff\r\n\r\n" + file.read()).encode())
+                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + jsLen + "\r\nContent-Type: text/javascript; charset=utf-8; \r\nX-Content-Type-Options: nosniff\r\n\r\n" + file.read()).encode())
 
         def GETstylecss():
             with open('style.css', 'r') as file:
@@ -84,9 +83,6 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                 ht = ht.replace("{{team}}", user)
                 self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(
                     len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=1; Max-Age=3600;\r\nX-Content-Type-Options: nosniff;\r\n\r\n" + ht).encode())
-
-
-
 
         elif b"GET /leaderboard HTTP/1.1" in self.data:
             allcookies = {}
@@ -210,8 +206,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                 if b'token' in allcookies:
                     user = usertoken.find_one({"token": allcookies[b'token'].decode()})["username"].decode()
 
-                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(
-                    len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=" + str(int(
+                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=" + str(int(
                     allcookies[
                         b'visits'].decode()) + 1) + "; Max-Age=3600;\r\nX-Content-Type-Options: nosniff;\r\n\r\n" + ht).encode())
 
@@ -226,7 +221,15 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                 b'--' + (headersDict[b'content-type'].split(b'boundary=')[1]))
             username = multipart[1].split(b'name="username"')[1].strip()
             password = multipart[2].split(b'name="regpass"')[1].strip()
-            # salt and hash the password before storing it in a database
+
+            # Check if the username already exists in the database
+            existing_user = userpass.find_one({"username": username})
+            if existing_user:
+                self.request.sendall(
+                    "HTTP/1.1 400 Bad Request\r\nContent-Type: text/html\r\n\r\n<html><head></head><body><p>Username already exists</p></body></html>".encode())
+                return
+
+            # Salt and hash the password before storing it in the database
             salt = bcrypt.gensalt()
             passwordHash = bcrypt.hashpw(password, salt)
             userpass.insert_one({"username": username, "password": passwordHash})

@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="0bb99104-6caa-48d9-97f3-3031b4fa4854" name="Changes" comment="">
+    <list default="true" id="0bb99104-6caa-48d9-97f3-3031b4fa4854" name="Changes" comment="Today's">
+      <change beforePath="$PROJECT_DIR$/.idea/d2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/d2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +40,14 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/karti/OneDrive/Desktop/Classes/Leadership/NextLevel&quot;
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/karti/OneDrive/Desktop/Classes/fall2023-PA1-LinkedLists-FULL&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -99,8 +114,25 @@
       <workItem from="1675879043756" duration="195000" />
       <workItem from="1675907781719" duration="4407000" />
       <workItem from="1675949298654" duration="2541000" />
-      <workItem from="1676038433095" duration="3704000" />
+      <workItem from="1676038433095" duration="4530000" />
+      <workItem from="1676084884906" duration="7000" />
+      <workItem from="1676237227614" duration="225000" />
+      <workItem from="1676253438538" duration="240000" />
+      <workItem from="1676329893028" duration="108000" />
+      <workItem from="1676345150754" duration="826000" />
+      <workItem from="1691677923763" duration="482000" />
+      <workItem from="1693502216017" duration="1013000" />
+      <workItem from="1694437210263" duration="66000" />
+      <workItem from="1694448481155" duration="336000" />
     </task>
+    <task id="LOCAL-00001" summary="Today's">
+      <created>1676044315800</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1676044315800</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -116,6 +148,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Today's" />
+    <option name="LAST_COMMIT_MESSAGE" value="Today's" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/d2$main.coverage" NAME="main Coverage Results" MODIFIED="1671638968681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
