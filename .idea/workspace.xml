@@ -5,17 +5,78 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0bb99104-6caa-48d9-97f3-3031b4fa4854" name="Changes" comment="Today's">
-      <change beforePath="$PROJECT_DIR$/.idea/d2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/d2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/change.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/Adam-farber.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/AimeeDiPasqua.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/Bansal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/Carl_Lam_Headshot.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/CouchKathryn.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/DanK.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/Dan_Liebel.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/DurghamAlyasiri.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/JasmineFoster.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/KameronJackson.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/MeganRechin.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/Myers_Head_shot.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/Riki-Lee Ritz.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/Tommy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/andrew.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/ashleighBerst.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/ashley.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/asif_hossain.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/brandiBanks.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/chelseamontrois.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/christineMarino.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/clairestroh.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/connor1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/crc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/emhof.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/erinBelile.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/gloria.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/hollisPaiquette.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/kane.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/kevin.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/megan.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/micheal.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/rikiLeeRitz.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/robertHengesbach.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/sam.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/mentors/spencerm.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/img/others/image1.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/game.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/leaderboard.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mentors.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/schedule.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,12 +102,13 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/karti/OneDrive/Desktop/Classes/fall2023-PA1-LinkedLists-FULL&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/karti/OneDrive/Desktop/Personal Projects/NextLevel&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.templateLanguages.PyTemplateLanguageModulesConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -76,6 +138,12 @@
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <recent_temporary>
@@ -124,6 +192,9 @@
       <workItem from="1693502216017" duration="1013000" />
       <workItem from="1694437210263" duration="66000" />
       <workItem from="1694448481155" duration="336000" />
+      <workItem from="1704380309464" duration="8128000" />
+      <workItem from="1704395857935" duration="1277000" />
+      <workItem from="1704401054713" duration="271000" />
     </task>
     <task id="LOCAL-00001" summary="Today's">
       <created>1676044315800</created>

@@ -1,354 +1,162 @@
-import random
-import socketserver
-import string
-from os.path import exists
-from socket import socket
-import bcrypt
-from pymongo import MongoClient
-import json
 import hashlib
-import base64
-import re
+import random
+import string
+import bcrypt
+from flask import Flask, request, make_response, render_template, redirect, url_for, send_from_directory
+from pymongo import MongoClient
 import helpers
 
+app = Flask(__name__)
+mongo_client = MongoClient("mongo")  # Ensure this is your correct connection string
+db = mongo_client["next-level"]
+userpass = db["userpass"]
+usertoken = db["usertoken"]
+teampts = db["teampts"]
 
-class MyTCPHandler(socketserver.BaseRequestHandler):
-    global listofUser
-    listofUser = []
 
-    def handle(self):
-        self.data = self.request.recv(2048)
-        mongo_client = MongoClient("mongo")
-        db = mongo_client["next-level"]
-        tokenData = db["tokens"]
-        userpass = db["userpass"]
-        usertoken = db["usertoken"]
-        teampts = db["teampts"]
-        headersDict = helpers.requestParser(self.data)
-        def GETfunctionjs():
-            with open('functions.js', 'r') as file:
-                jsLen = str(len(file.read()))
-            with open('functions.js', 'r') as file:
-                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + jsLen + "\r\nContent-Type: text/javascript; charset=utf-8; \r\nX-Content-Type-Options: nosniff\r\n\r\n" + file.read()).encode())
+# Helper function to validate user input
+def is_valid_input(input_value):
+    return input_value is not None and input_value != ""
 
-        def GETstylecss():
-            with open('style.css', 'r') as file:
-                cssLen = str(len(file.read()))
-            with open('style.css', 'r') as file:
-                self.request.sendall((
-                                             "HTTP/1.1 200 OK\r\nContent-Length: " + cssLen + "\r\nContent-Type: text/css; charset=utf-8; \r\nX-Content-Type-Options: nosniff\r\n\r\n" + file.read()).encode())
 
-        # Start of Parsing -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-        if b"GET / HTTP/1.1" in self.data:
-            allcookies = {}
-            userDic = {}
-            list1 = []
-            with open('index.html', 'r') as file:
-                ht = file.read()
-            if b'cookie' in headersDict:
-                allcookies = helpers.stringTomap(headersDict[b'cookie'])
-            if b'cookie' not in headersDict:
-                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(
-                    len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=1; Max-Age=3600;\r\nX-Content-Type-Options: nosniff;\r\n\r\n" + ht).encode())
-            elif int(allcookies[b'visits'].decode()) >= 1:
-                user = ""
-                if b'token' in allcookies:
-                    user = usertoken.find_one({"token": allcookies[b'token'].decode()})["username"].decode()
-                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(
-                    len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=" + str(int(
-                    allcookies[
-                        b'visits'].decode()) + 1) + "; Max-Age=3600;\r\nX-Content-Type-Options: nosniff;\r\n\r\n" + ht).encode())
+@app.route('/')
+def index():
+    allcookies = request.cookies
+    response = make_response(render_template('index.html'))
+    visits = int(allcookies.get('visits', 0)) + 1
+    response.set_cookie('visits', str(visits), max_age=3600)
+    return response
 
-        elif b"GET /game HTTP/1.1" in self.data:
-            allcookies = {}
-            userDic = {}
-            list1 = []
-            user = ""
-            with open('game.html', 'r') as file:
-                ht = file.read()
-            if b'cookie' in headersDict:
-                allcookies = helpers.stringTomap(headersDict[b'cookie'])
-                if int(allcookies[b'visits'].decode()) >= 1:
-                    if b'token' in allcookies:
-                        user = usertoken.find_one({"token": allcookies[b'token'].decode()})["username"].decode()
-                        ht = ht.replace("{{team}}", user)
-                    else:
-                        user = 'Please Login'
-                        ht = ht.replace("Team {{team}}", user)
-                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(
-                    len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=" + str(int(
-                    allcookies[
-                        b'visits'].decode()) + 1) + "; Max-Age=3600;\r\nX-Content-Type-Options: nosniff;\r\n\r\n" + ht).encode())
-            if b'cookie' not in headersDict:
-                ht = ht.replace("{{team}}", user)
-                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(
-                    len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=1; Max-Age=3600;\r\nX-Content-Type-Options: nosniff;\r\n\r\n" + ht).encode())
 
-        elif b"GET /leaderboard HTTP/1.1" in self.data:
-            allcookies = {}
-            userDic = {}
-            list1 = []
-            leaderboarddic = {}
-            with open('leaderboard.html', 'r') as file:
-                ht = file.read()
+@app.route('/game')
+def game():
+    user = ""
+    token = request.cookies.get('token')
+    if token:
+        user_data = usertoken.find_one({"token": token})
+        if user_data:
+            user = user_data.get("username", "")
+    return render_template('game.html', team=user)
 
-            for i in teampts.find({}):
-                for k in i:
-                    if k != "_id":
-                        if {k: i[k]} not in list1:
-                            print({k: i[k]})
-                            list1.append({k: i[k]})
-            score = ""
-            leader = ""
-            for p in list1:
-                for k in p:
-                    h = p[k]
-                    if h == "Q1" or h == "Q2" or h == "Q4" or h == "Q5" or h == "Q6" or h == "Q13" or h == "Q14" or h == "Q15":
-                        if k in leaderboarddic:
-                            v = leaderboarddic[k] + 10
-                            leaderboarddic[k] = v
-                        else:
-                            leaderboarddic[k] = 10
-                    elif h == "Q3" or h == "Q8" or h == "Q9" or h == "Q10":
-                        if k in leaderboarddic:
-                            v = leaderboarddic[k] + 50
-                            leaderboarddic[k] = v
-                        else:
-                            leaderboarddic[k] = 50
-                    elif h == "Q7" or h == "Q11":
-                        if k in leaderboarddic:
-                            v = leaderboarddic[k] + 20
-                            leaderboarddic[k] = v
-                        else:
-                            leaderboarddic[k] = 20
-                    elif h == "Q12":
-                        if k in leaderboarddic:
-                            v = leaderboarddic[k] + 75
-                            leaderboarddic[k] = v
-                        else:
-                            leaderboarddic[k] = 75
-            sortLead = helpers.sort_teams(leaderboarddic)
-            for i in sortLead:
-                leader += str(i) + " : " + str(sortLead[i]) + "<br>"
 
-            ht = ht.replace("{{leader}}", leader)
-            if b'cookie' in headersDict:
-                allcookies = helpers.stringTomap(headersDict[b'cookie'])
-            if b'cookie' not in headersDict:
-                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(
-                    len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=1; Max-Age=3600;\r\nX-Content-Type-Options: nosniff;\r\n\r\n" + ht).encode())
-            elif int(allcookies[b'visits'].decode()) >= 1:
-                user = ""
-                if b'token' in allcookies:
-                    user = usertoken.find_one({"token": allcookies[b'token'].decode()})["username"].decode()
-                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(
-                    len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=" + str(int(
-                    allcookies[
-                        b'visits'].decode()) + 1) + "; Max-Age=3600;\r\nX-Content-Type-Options: nosniff;\r\n\r\n" + ht).encode())
+@app.route('/leaderboard')
+def leaderboard():
+    # Improved leaderboard calculation logic
+    leaderboarddic = {}
+    for entry in teampts.find():
+        username = entry.get("username")
+        questions = entry.get("questions", [])
+        for q in questions:
+            points = 10  # Default points, modify as per your scoring system
+            leaderboarddic[username] = leaderboarddic.get(username, 0) + points
 
-        elif b"GET /mentors HTTP/1.1" in self.data:
-            allcookies = {}
-            userDic = {}
-            list1 = []
-            with open('mentors.html', 'r') as file:
-                ht = file.read()
+    sortLead = helpers.sort_teams(leaderboarddic)
+    leader = "<br>".join(f"{team} : {score}" for team, score in sortLead.items())
 
-            if b'cookie' in headersDict:
-                allcookies = helpers.stringTomap(headersDict[b'cookie'])
-            if b'cookie' not in headersDict:
-                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(
-                    len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=1; Max-Age=3600;\r\nX-Content-Type-Options: nosniff;\r\n\r\n" + ht).encode())
-            elif int(allcookies[b'visits'].decode()) >= 1:
-                user = ""
-                if b'token' in allcookies:
-                    user = usertoken.find_one({"token": allcookies[b'token'].decode()})["username"].decode()
+    response = make_response(render_template('leaderboard.html', leader=leader))
+    visits = int(request.cookies.get('visits', 0)) + 1
+    response.set_cookie('visits', str(visits), max_age=3600)
+    return response
 
-                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(
-                    len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=" + str(int(
-                    allcookies[
-                        b'visits'].decode()) + 1) + "; Max-Age=3600;\r\nX-Content-Type-Options: nosniff;\r\n\r\n" + ht).encode())
 
-        elif b"GET /login HTTP/1.1" in self.data:
-            allcookies = {}
-            userDic = {}
-            list1 = []
-            with open('login.html', 'r') as file:
-                ht = file.read()
+@app.route('/mentors')
+def mentors():
+    allcookies = request.cookies
+    response = make_response(render_template('mentors.html'))
+    visits = int(allcookies.get('visits', 0)) + 1
+    response.set_cookie('visits', str(visits), max_age=3600)
+    return response
 
-            if b'cookie' in headersDict:
-                allcookies = helpers.stringTomap(headersDict[b'cookie'])
-            if b'cookie' not in headersDict:
-                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(
-                    len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=1; Max-Age=3600;\r\nX-Content-Type-Options: nosniff;\r\n\r\n" + ht).encode())
-            elif int(allcookies[b'visits'].decode()) >= 1:
-                user = ""
-                if b'token' in allcookies:
-                    user = usertoken.find_one({"token": allcookies[b'token'].decode()})["username"].decode()
 
-                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(
-                    len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=" + str(int(
-                    allcookies[
-                        b'visits'].decode()) + 1) + "; Max-Age=3600;\r\nX-Content-Type-Options: nosniff;\r\n\r\n" + ht).encode())
+@app.route('/login')
+def login():
+    allcookies = request.cookies
+    response = make_response(render_template('login.html'))
+    visits = int(allcookies.get('visits', 0)) + 1
+    response.set_cookie('visits', str(visits), max_age=3600)
+    return response
 
-        elif b"GET /schedule HTTP/1.1" in self.data:
-            allcookies = {}
-            userDic = {}
-            list1 = []
-            with open('schedule.html', 'r') as file:
-                ht = file.read()
-            if b'cookie' in headersDict:
-                allcookies = helpers.stringTomap(headersDict[b'cookie'])
-            if b'cookie' not in headersDict:
-                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(
-                    len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=1; Max-Age=3600;\r\nX-Content-Type-Options: nosniff;\r\n\r\n" + ht).encode())
-            elif int(allcookies[b'visits'].decode()) >= 1:
-                user = ""
-                if b'token' in allcookies:
-                    user = usertoken.find_one({"token": allcookies[b'token'].decode()})["username"].decode()
 
-                self.request.sendall(("HTTP/1.1 200 OK\r\nContent-Length: " + str(len(ht)) + "\r\nContent-Type: text/html; charset=utf-8; \r\nSet-Cookie: visits=" + str(int(
-                    allcookies[
-                        b'visits'].decode()) + 1) + "; Max-Age=3600;\r\nX-Content-Type-Options: nosniff;\r\n\r\n" + ht).encode())
+@app.route('/schedule')
+def schedule():
+    allcookies = request.cookies
+    response = make_response(render_template('schedule.html'))
+    visits = int(allcookies.get('visits', 0)) + 1
+    response.set_cookie('visits', str(visits), max_age=3600)
+    return response
 
-        elif b"GET /style.css" in self.data:
-            GETstylecss()
 
-        elif b"GET /functions.js" in self.data:
-            GETfunctionjs()
+@app.route('/registeruser', methods=['POST'])
+def register_user():
+    username = request.form.get('username')
+    password = request.form.get('regpass')
+    if not is_valid_input(username) or not is_valid_input(password):
+        return "Invalid input", 400
 
-        elif b"/registeruser" in self.data:
-            multipart = self.data[self.data.index(b'\r\n\r\n'):].split(
-                b'--' + (headersDict[b'content-type'].split(b'boundary=')[1]))
-            username = multipart[1].split(b'name="username"')[1].strip()
-            password = multipart[2].split(b'name="regpass"')[1].strip()
+    if userpass.find_one({"username": username}):
+        return "Username already exists", 400
 
-            # Check if the username already exists in the database
-            existing_user = userpass.find_one({"username": username})
-            if existing_user:
-                self.request.sendall(
-                    "HTTP/1.1 400 Bad Request\r\nContent-Type: text/html\r\n\r\n<html><head></head><body><p>Username already exists</p></body></html>".encode())
-                return
+    password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+    userpass.insert_one({"username": username, "password": password_hash})
+    return redirect(url_for('login'))
 
-            # Salt and hash the password before storing it in the database
-            salt = bcrypt.gensalt()
-            passwordHash = bcrypt.hashpw(password, salt)
-            userpass.insert_one({"username": username, "password": passwordHash})
-            self.request.sendall(
-                "HTTP/1.1 301 Moved Permanently\r\nLocation: /login\r\nContent-Length: 0\r\n\r\n".encode())
 
-        elif b"/loginuser" in self.data:
-            multipart = self.data[self.data.index(b'\r\n\r\n'):].split(
-                b'--' + (headersDict[b'content-type'].split(b'boundary=')[1]))
-            username = multipart[1].split(b'name="usernamel"')[1].strip()
-            password = multipart[2].split(b'name="regpassl"')[1].strip()
-            # check if the username is stored in the database
-            if not userpass.find_one({"username": username}):
-                self.request.send(bytes(
-                    "HTTP/1.1 400 Bad Request\r\nContent-Type: text/html\r\n\r\n<html><head></head><body><p>Username not found</p></body></html>",
-                    "utf-8"))
-            # authenticate the password
-            storedPasswordHash = userpass.find_one({"username": username})["password"]
-            if bcrypt.checkpw(password, storedPasswordHash):
-                token = ''.join(random.choice(string.ascii_letters + string.digits) for i in range(200))
-                tokenHash = hashlib.sha256(token.encode("utf-8")).hexdigest()
-                usertoken.insert_one({"username": username, "token": tokenHash})
-                tokenCookie = b"token=" + tokenHash.encode("utf-8") + b"; Max-Age=3600;"
-                self.request.sendall(
-                    b"HTTP/1.1 301 Moved Permanently\r\nLocation: /game\r\nSet-Cookie:" + tokenCookie + b"\r\nContent-Length: 0\r\n\r\n")
-            else:
-                self.request.send(bytes(
-                    "HTTP/1.1 400 Bad Request\r\nContent-Type: text/html\r\n\r\n<html><head></head><body><p>Username not found</p></body></html>",
-                    "utf-8"))
+@app.route('/loginuser', methods=['POST'])
+def login_user():
+    username = request.form.get('usernamel')
+    password = request.form.get('regpassl')
 
-        elif b"/submit" in self.data:
-            self.data += self.request.recv(2048)
-            multipart = self.data[self.data.index(b'\r\n\r\n'):].split(
-                b'--' + (headersDict[b'content-type'].split(b'boundary=')[1]))
-            print(multipart)
-            print(len(multipart))
-            q1 = multipart[1].split(b'name="Q1"')[1].strip().decode()
-            q2 = multipart[2].split(b'name="Q2"')[1].strip().decode()
-            q3 = multipart[3].split(b'name="Q3"')[1].strip().decode()
-            q4 = multipart[4].split(b'name="Q4"')[1].strip().decode()
-            q5 = multipart[5].split(b'name="Q5"')[1].strip().decode()
-            q6 = multipart[6].split(b'name="Q6"')[1].strip().decode()
-            q7 = multipart[7].split(b'name="Q7"')[1].strip().decode()
-            q8 = multipart[8].split(b'name="Q8"')[1].strip().decode()
-            q9 = multipart[9].split(b'name="Q9"')[1].strip().decode()
-            q10 = multipart[10].split(b'name="Q10"')[1].strip().decode()
-            q11 = multipart[11].split(b'name="Q11"')[1].strip().decode()
-            q12 = multipart[12].split(b'name="Q12"')[1].strip().decode()
-            q13 = multipart[13].split(b'name="Q13"')
-            q13 = q13[1].strip().decode()
-            q14 = multipart[14].split(b'name="Q14"')[1].strip().decode()
-            q15 = multipart[15].split(b'name="Q15"')[1].strip().decode()
-            allcookies = helpers.stringTomap(headersDict[b'cookie'])
-            user = usertoken.find_one({"token": allcookies[b'token'].decode()})["username"].decode()
-            teampts.find({})
-            if q1 == "AMDFH":
-                teampts.insert_one({user: "Q1"})
-            if q2 == "LNSGE":
-                teampts.insert_one({user: "Q2"})
-            if q3 == "RMSGT":
-                teampts.insert_one({user: "Q3"})
-            if q4 == "SZZJK":
-                teampts.insert_one({user: "Q4"})
-            if q5 == "TMMAR":
-                teampts.insert_one({user: "Q5"})
-            if q6 == "TVSGH":
-                teampts.insert_one({user: "Q6"})
-            if q7 == "ALPXZ":
-                teampts.insert_one({user: "Q7"})
-            if q8 == "XMRKM":
-                teampts.insert_one({user: "Q8"})
-            if q9 == "WHLPS":
-                teampts.insert_one({user: "Q9"})
-            if q10 == "JSDRJ":
-                teampts.insert_one({user: "Q10"})
-            if q11 == "XWEWY":
-                teampts.insert_one({user: "Q11"})
-            if q12 == "PYMJT":
-                teampts.insert_one({user: "Q12"})   
-            if q13 == "BWUFL":
-                teampts.insert_one({user: "Q13"})
-            if q14 == "WPPQB":
-                teampts.insert_one({user: "Q14"})
-            if q15 == "DHJPK":
-                teampts.insert_one({user: "Q15"})
+    if not is_valid_input(username) or not is_valid_input(password):
+        return "Invalid input", 400
 
-            self.request.sendall(
-                b"HTTP/1.1 301 Moved Permanently\r\nLocation: /leaderboard\r\nContent-Length: 0\r\n\r\n")
-        
-        elif b"GET /assets/img/mentors/" in self.data:
-            data = self.data.decode().split(' ')
-            filename = data[1].split('/')[-1]
-            if exists('assets/img/mentors/' + filename):
-                with open('assets/img/mentors/' + filename, 'rb') as file:
-                    imagelen = str(len(file.read()))
-                with open('assets/img/mentors/' + filename, 'rb') as file:
-                    self.request.sendall(
-                        b"HTTP/1.1 200 OK\r\nContent-Length: " + imagelen.encode() + b"\r\nContent-Type: image/jpeg; charset=utf-8; \r\nX-Content-Type-Options: nosniff\r\n\r\n" + file.read())
-            else:
-                self.request.sendall(
-                    "HTTP/1.1 404 Not Found\r\nContent-Length: 25\r\nContent-Type: text/plain; charset=utf-8\r\n\r\nError 404: Page Not Found".encode())
-        elif b"GET /assets/img/others/" in self.data:
-            data = self.data.decode().split(' ')
-            filename = data[1].split('/')[-1]
-            if exists('assets/img/others/' + filename):
-                with open('assets/img/others/'+ filename, 'rb') as file:
-                    imagelen = str(len(file.read()))
-                with open('assets/img/others/'+ filename, 'rb') as file:
-                    self.request.sendall(b"HTTP/1.1 200 OK\r\nContent-Length: " + imagelen.encode() + b"\r\nContent-Type: image/svg+xml; charset=utf-8; \r\nX-Content-Type-Options: nosniff\r\n\r\n" + file.read())
-            else:
-                self.request.sendall(
-                    "HTTP/1.1 404 Not Found\r\nContent-Length: 25\r\nContent-Type: text/plain; charset=utf-8\r\n\r\nError 404: Page Not Found".encode())
+    user = userpass.find_one({"username": username})
+    if user and bcrypt.checkpw(password.encode(), user["password"]):
+        token = ''.join(random.choices(string.ascii_letters + string.digits, k=200))
+        token_hash = hashlib.sha256(token.encode()).hexdigest()
+        usertoken.insert_one({"username": username, "token": token_hash})
+        response = make_response(redirect(url_for('game')))
+        response.set_cookie('token', token_hash, max_age=3600)
+        return response
+    else:
+        return "Username not found or password is incorrect", 400
 
-        else:
-            self.request.sendall(
-                "HTTP/1.1 404 Not Found\r\nContent-Length: 25\r\nContent-Type: text/plain; charset=utf-8\r\n\r\nError 404: Page Not Found".encode())
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    token = request.cookies.get('token')
+    if not token:
+        return "No token provided", 403
+
+    user_data = usertoken.find_one({"token": token})
+    if not user_data:
+        return "User not authenticated", 403
+
+    username = user_data["username"]
+    correct_answers = {
+        "Q1": "AMDFH", "Q2": "LNSGE", "Q3": "RMSGT", "Q4": "SZZJK", "Q5": "TMMAR",
+        "Q6": "TVSGH", "Q7": "ALPXZ", "Q8": "XMRKM", "Q9": "WHLPS", "Q10": "JSDRJ",
+        "Q11": "XWEWY", "Q12": "PYMJT", "Q13": "BWUFL", "Q14": "WPPQB", "Q15": "DHJPK"
+    }
+    questions_correct = []
+    for q, answer in correct_answers.items():
+        user_answer = request.form.get(q)
+        if user_answer and user_answer == answer:
+            questions_correct.append(q)
+
+    if questions_correct:
+        teampts.update_one({"username": username}, {"$push": {"questions": {"$each": questions_correct}}}, upsert=True)
+
+    return redirect(url_for('leaderboard'))
+
+
+@app.route('/assets/img/mentors/<filename>')
+def mentor_image(filename):
+    return send_from_directory('static/img/mentors', filename)
+
+@app.route('/assets/img/others/<filename>')
+def other_image(filename):
+    return send_from_directory('static/img/others', filename)
 
 
 if __name__ == "__main__":
-    HOST, PORT = "0.0.0.0", 3000
-    server = socketserver.ThreadingTCPServer((HOST, PORT), MyTCPHandler)
-    server.serve_forever()
+    app.run(host='0.0.0.0', port=3000)
