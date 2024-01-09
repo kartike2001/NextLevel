@@ -148,6 +148,7 @@ def submit():
 def mentor_image(filename):
     return send_from_directory('static/img/mentors', filename)
 
+
 @app.route('/assets/img/others/<filename>')
 def other_image(filename):
     return send_from_directory('static/img/others', filename)

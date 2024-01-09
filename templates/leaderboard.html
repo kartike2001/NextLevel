@@ -2,89 +2,86 @@
 <html lang="en">
 <head>
     <title>Next-Level Leadership Game</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/slick.min.css'>
-  <link rel='stylesheet'
-    href='https:////cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/accessible-slick-theme.min.css'>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
-  <link rel="stylesheet" type="text/css" href="static/css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/c7e593ee29.js" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet'
+          href='https://cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/slick.min.css'>
+    <link rel='stylesheet'
+          href='https:////cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/accessible-slick-theme.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c7e593ee29.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
 
-
 <nav class="navbar navbar-inverse">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
 
-        <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
 
-      </button>
-      <a class="navbar-brand" href="/"><i class="fa-solid fa-building-columns jn"></i><br>University at Buffalo</a>
+            </button>
+            <a class="navbar-brand" href="/"><i class="fa-solid fa-building-columns jn"></i><br>University at
+                Buffalo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/game">Game</a></li>
+                <li class="active"><a href="/leaderboard">Leaderboard</a></li>
+            </ul>
+
+        </div>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li ><a href="/">Home</a></li>
-        <li ><a href="/login">Login</a></li>
-        <li ><a href="/game">Game</a></li>
-        <li class="active"><a href="/leaderboard">Leaderboard</a></li>
-      </ul>
-
-    </div>
-  </div>
 </nav>
-
-
-
 
 
 <!-- Main Content -->
 <section class="container-fluid sec-2 ">
-  <div class="container">
-<div class="row clearfix nor">
-  <div class="col-sm-12 topup">
+    <div class="container">
+        <div class="row clearfix nor">
+            <div class="col-sm-12 topup">
 
-    <span class="company__logo"><h2><span class="fa-solid fa-trophy"></span></h2></span>
-        <h4 class="company_title">Leaderboard</h4>
-  </div>
-
-   
-
-  <div class="col-sm-12 dopup ">
-    <h1> </h1>
-
-     <div class="col-sm-12 col-xs-12 np ">
-
-      <h2 class="text-center">{{leader}}</h2>
-      </div> 
+                <span class="company__logo"><h2><span class="fa-solid fa-trophy"></span></h2></span>
+                <h4 class="company_title">Leaderboard</h4>
+            </div>
 
 
+            <div class="col-sm-12 dopup ">
+                <h1></h1>
+
+                <div class="col-sm-12 col-xs-12 np ">
+
+                    <h2 class="text-center">{{leader}}</h2>
+                </div>
 
 
-</div>
-</div>
+            </div>
+        </div>
+    </div>
 </section>
 
-  <!-- Footer -->
- <section class="footer container">
-   <div class=" clearfix">
-     <div class="col-sm-12">
-       <p>© 2023 Next-Level Leadership. All Rights Reserved.</p>
-     </div>
-   </div>
- </section>
+<!-- Footer -->
+<section class="footer container">
+    <div class=" clearfix">
+        <div class="col-sm-12">
+            <p>© 2023 Next-Level Leadership. All Rights Reserved.</p>
+        </div>
+    </div>
+</section>
 
 </body>
 </html>

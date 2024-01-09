@@ -2,168 +2,180 @@
 <html lang="en">
 <head>
     <title>Next-Level Leadership Game</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/slick.min.css'>
-  <link rel='stylesheet'
-    href='https:////cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/accessible-slick-theme.min.css'>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
-  <link rel="stylesheet" type="text/css" href="static/css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/c7e593ee29.js" crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='stylesheet'
+          href='https://cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/slick.min.css'>
+    <link rel='stylesheet'
+          href='https:////cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/accessible-slick-theme.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c7e593ee29.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
 
-
 <nav class="navbar navbar-inverse">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
 
-        <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
 
-      </button>
-      <a class="navbar-brand" href="/"><i class="fa-solid fa-building-columns jn"></i><br>University at Buffalo</a>
+            </button>
+            <a class="navbar-brand" href="/"><i class="fa-solid fa-building-columns jn"></i><br>University at
+                Buffalo</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/">Home</a></li>
+                <li><a href="/login">Login</a></li>
+                <li class="active"><a href="/game">Game</a></li>
+                <li><a href="/leaderboard">Leaderboard</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/">Home</a></li>
-        <li ><a href="/login">Login</a></li>
-        <li class="active"><a href="/game">Game</a></li>
-        <li><a href="/leaderboard">Leaderboard</a></li>
-      </ul>
-    </div>
-  </div>
 </nav>
-
-
-
 
 
 <!-- Main Content -->
 <section class="container-fluid sec-2 ">
-  <div class="container">
-<div class="row clearfix nor">
-  <div class="col-sm-12 topup">
+    <div class="container">
+        <div class="row clearfix nor">
+            <div class="col-sm-12 topup">
 
-    <span class="company__logo"><h2><span class="fa-solid fa-building-columns"></span></h2></span>
-        <h4 class="company_title">University at Buffalo</h4>
-  </div>
+                <span class="company__logo"><h2><span class="fa-solid fa-building-columns"></span></h2></span>
+                <h4 class="company_title">University at Buffalo</h4>
+            </div>
 
-   <form control="" class="form-group" action="/submit" method="post" enctype="multipart/form-data" >
+            <form control="" class="form-group" action="/submit" method="post" enctype="multipart/form-data">
 
-  <div class="col-sm-12 dopup">
-    <h1> Team {{team}}</h1>
+                <div class="col-sm-12 dopup">
+                    <h1> Team {{team}}</h1>
 
-     <div class="col-sm-6 np">
+                    <div class="col-sm-6 np">
 
-      <label for="Q1">1. Tell us something that makes your team special! 10 Points</label>
-      <input type="text" id="Q1" name="Q1" class="form__input" ></div>
-   <div class="col-sm-6 np">
-    <label for="Q2">2. Find a Student Engagement Ambassador and upload a selfie with them. 10 Points</label>
-    <input type="text" id="Q2" name="Q2" class="form__input" ></div>
-  </div>
+                        <label for="Q1">1. Tell us something that makes your team special! 10 Points</label>
+                        <input type="text" id="Q1" name="Q1" class="form__input"></div>
+                    <div class="col-sm-6 np">
+                        <label for="Q2">2. Find a Student Engagement Ambassador and upload a selfie with them. 10
+                            Points</label>
+                        <input type="text" id="Q2" name="Q2" class="form__input"></div>
+                </div>
 
-  <div class="col-sm-12 dopup">
+                <div class="col-sm-12 dopup">
 
-     <div class="col-sm-6 np">
+                    <div class="col-sm-6 np">
 
-      <label for="Q3">3. Locate your LinkedIn QR Code and connect with 3 people using the scan tab. 50 Points</label>
-      <input type="text" id="Q3" name="Q3" class="form__input" ></div>
-   <div class="col-sm-6 np">
-    <label for="Q4">4. Tell us your best piece of advice for networking or ask a question you have about networking. 10 Points</label>
-    <input type="text" id="Q4" name="Q4" class="form__input" ></div>
-  </div>
-   <div class="col-sm-12 dopup">
-     <div class="col-sm-6 np">
+                        <label for="Q3">3. Locate your LinkedIn QR Code and connect with 3 people using the scan tab. 50
+                            Points</label>
+                        <input type="text" id="Q3" name="Q3" class="form__input"></div>
+                    <div class="col-sm-6 np">
+                        <label for="Q4">4. Tell us your best piece of advice for networking or ask a question you have
+                            about networking. 10 Points</label>
+                        <input type="text" id="Q4" name="Q4" class="form__input"></div>
+                </div>
+                <div class="col-sm-12 dopup">
+                    <div class="col-sm-6 np">
 
-       <label for="Q5">5. Tell us one unique thing about you that you'll share in interviews. 10 Points</label>
-      <input type="text" id="Q5" name="Q5" class="form__input" ></div>
-   <div class="col-sm-6 np">
-   <label for="Q6">6. Choose three words that describe you best. 10 Points</label>
-    <input type="text" id="Q6" name="Q6" class="form__input" ></div>
-  </div>
+                        <label for="Q5">5. Tell us one unique thing about you that you'll share in interviews. 10
+                            Points</label>
+                        <input type="text" id="Q5" name="Q5" class="form__input"></div>
+                    <div class="col-sm-6 np">
+                        <label for="Q6">6. Choose three words that describe you best. 10 Points</label>
+                        <input type="text" id="Q6" name="Q6" class="form__input"></div>
+                </div>
 
-   <div class="col-sm-12 dopup">
-       <div class="col-sm-6 np">
-           <label for="Q7">7. What is one way we, as a university, can have more representation at our "tables"? 20 Points</label>
-           <input type="text" id="Q7" name="Q7" class="form__input" ></div>
-       <div class="col-sm-6 np">
-           <label for="Q8">8. Tell us one SMART goal you want to achieve? 50 Points</label>
-           <input type="text" id="Q8" name="Q8" class="form__input" >
-       </div>
-   </div>
-   <div class="col-sm-12 dopup">
-       <div class="col-sm-6 np">
-           <label for="Q9">9. What is one thing you learned about intersectionality from the video? 50 Points</label>
-           <input type="text" id="Q9" name="Q9" class="form__input" ></div>
-       <div class="col-sm-6 np">
-           <label for="Q10">10. Compile a list here of 5-7 traits that reflect your ideal qualities in a supervisor. 50 Points</label>
-           <input type="text" id="Q10" name="Q10" class="form__input" >
-       </div>
-   </div>
-   <div class="col-sm-12 dopup">
-       <div class="col-sm-6 np">
-           <label for="Q11">11. Complete this form to practice "taking the temperature" by answering the questions above with  your team. 20 Points</label>
-           <input type="text" id="Q11" name="Q11" class="form__input" ></div>
-       <div class="col-sm-6 np">
-           <label for="Q12">12. What type of mentoring style do you connect with the most? Write a quick thank you note to the mentors and be sure to include the best advice you heard today and a tip/someone you met. 75 Points</label>
-           <input type="text" id="Q12" name="Q12" class="form__input" >
-       </div>
-   </div>
+                <div class="col-sm-12 dopup">
+                    <div class="col-sm-6 np">
+                        <label for="Q7">7. What is one way we, as a university, can have more representation at our
+                            "tables"? 20 Points</label>
+                        <input type="text" id="Q7" name="Q7" class="form__input"></div>
+                    <div class="col-sm-6 np">
+                        <label for="Q8">8. Tell us one SMART goal you want to achieve? 50 Points</label>
+                        <input type="text" id="Q8" name="Q8" class="form__input">
+                    </div>
+                </div>
+                <div class="col-sm-12 dopup">
+                    <div class="col-sm-6 np">
+                        <label for="Q9">9. What is one thing you learned about intersectionality from the video? 50
+                            Points</label>
+                        <input type="text" id="Q9" name="Q9" class="form__input"></div>
+                    <div class="col-sm-6 np">
+                        <label for="Q10">10. Compile a list here of 5-7 traits that reflect your ideal qualities in a
+                            supervisor. 50 Points</label>
+                        <input type="text" id="Q10" name="Q10" class="form__input">
+                    </div>
+                </div>
+                <div class="col-sm-12 dopup">
+                    <div class="col-sm-6 np">
+                        <label for="Q11">11. Complete this form to practice "taking the temperature" by answering the
+                            questions above with your team. 20 Points</label>
+                        <input type="text" id="Q11" name="Q11" class="form__input"></div>
+                    <div class="col-sm-6 np">
+                        <label for="Q12">12. What type of mentoring style do you connect with the most? Write a quick
+                            thank you note to the mentors and be sure to include the best advice you heard today and a
+                            tip/someone you met. 75 Points</label>
+                        <input type="text" id="Q12" name="Q12" class="form__input">
+                    </div>
+                </div>
 
-  <div class="col-sm-12 dopup">
-     <div class="col-sm-6 np"> 
-       <label for="Q13">13. What is one element that contributes to emotional intelligence? 10 Points</label>
-      <input type="text" id="Q13" name="Q13" class="form__input" ></div>
-   <div class="col-sm-6 np">
-   <label for="Q14">14. What is another area in life that having good public speaking skills is important? 10 Points</label>
-    <input type="text" id="Q14" name="Q14" class="form__input" ></div>
-  </div>
+                <div class="col-sm-12 dopup">
+                    <div class="col-sm-6 np">
+                        <label for="Q13">13. What is one element that contributes to emotional intelligence? 10
+                            Points</label>
+                        <input type="text" id="Q13" name="Q13" class="form__input"></div>
+                    <div class="col-sm-6 np">
+                        <label for="Q14">14. What is another area in life that having good public speaking skills is
+                            important? 10 Points</label>
+                        <input type="text" id="Q14" name="Q14" class="form__input"></div>
+                </div>
 
-    <div class="col-sm-12 dopup">
-     <div class="col-sm-12 np">
-       <label for="Q15">15. What is your favorite form of storytelling? Is it orally, digitally, or written? 10 Points</label>
-      <input type="text" id="Q15" name="Q15" class="form__input" ></div>
-  </div>
-   <div class="col-sm-12 dopup text-center">
-      <input type="submit" value="Submit" class="btn">
-  </div>
-</form>
+                <div class="col-sm-12 dopup">
+                    <div class="col-sm-12 np">
+                        <label for="Q15">15. What is your favorite form of storytelling? Is it orally, digitally, or
+                            written? 10 Points</label>
+                        <input type="text" id="Q15" name="Q15" class="form__input"></div>
+                </div>
+                <div class="col-sm-12 dopup text-center">
+                    <input type="submit" value="Submit" class="btn">
+                </div>
+            </form>
 
 
-</div>
-</div>
+        </div>
+    </div>
 </section>
 
-  <!-- Footer -->
- <section class="footer container">
-   <div class=" clearfix">
-     <div class="col-sm-12">
-       <p>© 2023 Next-Level Leadership. All Rights Reserved.</p>
-     </div>
-   </div>
- </section>
+<!-- Footer -->
+<section class="footer container">
+    <div class=" clearfix">
+        <div class="col-sm-12">
+            <p>© 2023 Next-Level Leadership. All Rights Reserved.</p>
+        </div>
+    </div>
+</section>
 
-  <script>
+<script>
     $(document).ready(function () {
-      $('.login-box h4').click(function(){
-        $('form').hide()
-        $('.'+$(this).data('target')).fadeIn()
+        $('.login-box h4').click(function () {
+            $('form').hide()
+            $('.' + $(this).data('target')).fadeIn()
 
 
-      })
+        })
     })
-    </script>
+</script>
 </body>
 </html>
 

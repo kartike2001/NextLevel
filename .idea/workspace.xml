@@ -4,57 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0bb99104-6caa-48d9-97f3-3031b4fa4854" name="Changes" comment="Today's">
-      <change afterPath="$PROJECT_DIR$/change.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/Adam-farber.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/AimeeDiPasqua.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/Bansal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/Carl_Lam_Headshot.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/CouchKathryn.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/DanK.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/Dan_Liebel.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/DurghamAlyasiri.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/JasmineFoster.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/KameronJackson.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/MeganRechin.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/Myers_Head_shot.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/Riki-Lee Ritz.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/Tommy.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/andrew.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/ashleighBerst.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/ashley.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/asif_hossain.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/brandiBanks.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/chelseamontrois.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/christineMarino.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/clairestroh.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/connor1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/crc.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/emhof.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/erinBelile.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/gloria.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/hollisPaiquette.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/kane.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/kevin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/megan.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/micheal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/rikiLeeRitz.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/robertHengesbach.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/sam.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/mentors/spencerm.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/others/image1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/leaderboard.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mentors.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/schedule.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" />
-    </list>
+    <list default="true" id="0bb99104-6caa-48d9-97f3-3031b4fa4854" name="Changes" comment="Today's" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -195,6 +145,7 @@
       <workItem from="1704380309464" duration="8128000" />
       <workItem from="1704395857935" duration="1277000" />
       <workItem from="1704401054713" duration="271000" />
+      <workItem from="1704816029405" duration="443000" />
     </task>
     <task id="LOCAL-00001" summary="Today's">
       <created>1676044315800</created>
