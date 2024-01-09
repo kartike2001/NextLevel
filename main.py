@@ -14,11 +14,6 @@ usertoken = db["usertoken"]
 teampts = db["teampts"]
 
 
-# Helper function to validate user input
-def is_valid_input(input_value):
-    return input_value is not None and input_value != ""
-
-
 @app.route('/')
 def index():
     allcookies = request.cookies
@@ -90,7 +85,7 @@ def schedule():
 def register_user():
     username = request.form.get('username')
     password = request.form.get('regpass')
-    if not is_valid_input(username) or not is_valid_input(password):
+    if not helpers.is_valid_input(username) or not helpers.is_valid_input(password):
         return "Invalid input", 400
 
     if userpass.find_one({"username": username}):
@@ -106,7 +101,7 @@ def login_user():
     username = request.form.get('usernamel')
     password = request.form.get('regpassl')
 
-    if not is_valid_input(username) or not is_valid_input(password):
+    if not helpers.is_valid_input(username) or not helpers.is_valid_input(password):
         return "Invalid input", 400
 
     user = userpass.find_one({"username": username})

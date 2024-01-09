@@ -68,3 +68,5 @@ def sort_teams(teams):
   sorted_teams = sorted(teams.items(), key=lambda x: x[1], reverse=True)
   return dict(sorted_teams)
 
+def is_valid_input(input_value):
+    return input_value is not None and input_value != ""
