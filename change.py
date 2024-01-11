@@ -3,6 +3,7 @@ import shutil
 
 project_root = 'C:\\USERS\\KARTI\\ONEDRIVE\\DESKTOP\\PERSONAL PROJECTS\\NEXTLEVEL'
 
+
 def create_directory(path):
     if not os.path.exists(path):
         os.makedirs(path)
@@ -10,12 +11,14 @@ def create_directory(path):
     else:
         print(f"Directory already exists: {path}")
 
+
 def move_file(src, dst):
     if os.path.exists(src):
         shutil.move(src, dst)
         print(f"Moved '{src}' to '{dst}'")
     else:
         print(f"File '{src}' does not exist")
+
 
 # Create necessary directories
 create_directory(os.path.join(project_root, 'templates'))
@@ -25,7 +28,7 @@ create_directory(os.path.join(project_root, 'static/js'))
 create_directory(os.path.join(project_root, 'static/img'))
 
 # Move HTML files to templates directory
-html_files = ['game.html', 'index.html', 'leaderboard.html', 'login.html', 'mentors.html', 'schedule.html']
+html_files = ['game.html', 'index.html', 'leaderboard.html', 'login.html']
 for file in html_files:
     move_file(os.path.join(project_root, file), os.path.join(project_root, 'templates', file))
 

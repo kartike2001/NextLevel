@@ -468,6 +468,25 @@ div.desc {
     box-shadow: 0 3px 8px 5px #eee;
 }
 
+.flex-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-row .np {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.flex-row .np .form__input,
+.flex-row .np label {
+    width: 100%; /* Full width of the container */
+    margin-bottom: 10px; /* Space between elements */
+}
+
 .login-box .flex {
     justify-content: space-around;
 }
@@ -853,6 +872,24 @@ form {
     margin-top: 20px;
 }
 
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.navbar-brand img {
+    vertical-align: middle;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    min-height: 60px;
+}
+
 .login_form h2 {
     color: #005bbb;
     text-transform: uppercase;
@@ -1039,6 +1076,10 @@ form {
         text-align: center;
     }
 
+    .flex-row .np .form__input {
+        width: 100%;
+        box-sizing: border-box;
+    }
 }
 
 .navbar-inverse .navbar-nav > li > a:focus,

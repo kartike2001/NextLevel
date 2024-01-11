@@ -13,12 +13,34 @@
     <link rel='stylesheet'
           href='https:////cdn.jsdelivr.net/npm/@accessible360/accessible-slick@1.0.1/slick/accessible-slick-theme.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
-    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
           rel="stylesheet">
     <script src="https://kit.fontawesome.com/c7e593ee29.js" crossorigin="anonymous"></script>
+    <script>
+    $(document).ready(function(){
+        function updateLeaderboard() {
+            $.ajax({
+                url: '/leaderboard_data', // Make sure this route is defined in your Flask app
+                type: 'GET',
+                success: function(data) {
+                    var leaderboardHTML = '';
+                    for (var team in data) {
+                        leaderboardHTML += team + ': ' + data[team] + '<br>';
+                    }
+                    $('.dopup h2').html(leaderboardHTML);
+                },
+                error: function(error) {
+                    console.log('Error:', error);
+                }
+            });
+        }
+
+        setInterval(updateLeaderboard, 1000); // Update every 5 seconds
+    });
+</script>
 </head>
 <body>
 
@@ -29,12 +51,12 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-
                 <span class="icon-bar"></span>
-
             </button>
-            <a class="navbar-brand" href="/"><i class="fa-solid fa-building-columns jn"></i><br>University at
-                Buffalo</a>
+            <br>
+            <a class="navbar-brand" href="/">
+                <img src="../static/img/others/UB.png" alt="UB Logo" style="height: 50px;">
+            </a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
@@ -64,7 +86,6 @@
                 <h1></h1>
 
                 <div class="col-sm-12 col-xs-12 np ">
-
                     <h2 class="text-center">{{leader}}</h2>
                 </div>
 

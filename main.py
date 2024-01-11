@@ -5,13 +5,28 @@ import bcrypt
 from flask import Flask, request, make_response, render_template, redirect, url_for, send_from_directory
 from pymongo import MongoClient
 import helpers
+from flask import jsonify
 
 app = Flask(__name__)
-mongo_client = MongoClient("mongo")  # Ensure this is your correct connection string
+mongo_client = MongoClient("mongo")
 db = mongo_client["next-level"]
 userpass = db["userpass"]
 usertoken = db["usertoken"]
 teampts = db["teampts"]
+
+
+@app.route('/leaderboard_data')
+def leaderboard_data():
+    leaderboarddic = {}
+    for entry in teampts.find():
+        username = entry.get("username")
+        questions = entry.get("questions", [])
+        for q in questions:
+            points = 10
+            leaderboarddic[username] = leaderboarddic.get(username, 0) + points
+
+    sortLead = helpers.sort_teams(leaderboarddic)
+    return jsonify(sortLead)
 
 
 @app.route('/')
@@ -27,22 +42,28 @@ def index():
 def game():
     user = ""
     token = request.cookies.get('token')
+    questions_answered_correctly = []
+
     if token:
         user_data = usertoken.find_one({"token": token})
         if user_data:
             user = user_data.get("username", "")
-    return render_template('game.html', team=user)
+            team_data = teampts.find_one({"username": user})
+            if team_data:
+                questions_answered_correctly = team_data.get("questions", [])
+
+    return render_template('game.html', team=user, questions_correct=questions_answered_correctly)
+
 
 
 @app.route('/leaderboard')
 def leaderboard():
-    # Improved leaderboard calculation logic
     leaderboarddic = {}
     for entry in teampts.find():
         username = entry.get("username")
         questions = entry.get("questions", [])
         for q in questions:
-            points = 10  # Default points, modify as per your scoring system
+            points = 10
             leaderboarddic[username] = leaderboarddic.get(username, 0) + points
 
     sortLead = helpers.sort_teams(leaderboarddic)
@@ -70,16 +91,6 @@ def login():
     visits = int(allcookies.get('visits', 0)) + 1
     response.set_cookie('visits', str(visits), max_age=3600)
     return response
-
-
-@app.route('/schedule')
-def schedule():
-    allcookies = request.cookies
-    response = make_response(render_template('schedule.html'))
-    visits = int(allcookies.get('visits', 0)) + 1
-    response.set_cookie('visits', str(visits), max_age=3600)
-    return response
-
 
 @app.route('/registeruser', methods=['POST'])
 def register_user():
