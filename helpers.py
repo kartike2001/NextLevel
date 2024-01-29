@@ -66,7 +66,7 @@ def bytetobinary(byte):
 
 
 def sort_teams(teams):
-    sorted_teams = sorted(teams.items(), key=lambda x: x[1], reverse=True)
+    sorted_teams = sorted(teams.items(), key=lambda x: x[1], reverse=False)
     return dict(sorted_teams)
 
 

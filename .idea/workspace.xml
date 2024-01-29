@@ -5,20 +5,55 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0bb99104-6caa-48d9-97f3-3031b4fa4854" name="Changes" comment="Today's">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/others/Crest.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/img/others/UB.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hello.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mentors.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/008468EB-7376-49D7-98DF-9C860C629F20.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/0914_forgebuffalo_careerfair_2023_hr-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/1584390579010.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/1660244105542.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/1E46F883-E53D-4BA6-92AB-6F81E095BD8C_1_105_c.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/20230109_150845_%281%29.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/Carrie_July_2021.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/Carter_headshot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/Couch_Kathryn_2022_Headshot_Web.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/Craig_Headshot.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/DCotton_Headshot2023.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/DSC00259.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/Denise_head_shot.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/FB_IMG_1703728930362.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/Facetune_09-12-2023-12-59-40.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/Final_Headshot_Passport.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/GSWNY_Headshots-_Javeena_crop.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/Headshot_B.Dysinger_2022.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/Headshot_NACE23.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/Heather-Campbell_portrait.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/IMG_0378.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/IMG_1072.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/IMG_1073.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/IMG_1329.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/IMG_20221230_194453_225.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/IMG_4704.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/IMG_7629.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/IMG_8624.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/Me_2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/Montrois-Portrait-Square.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/PNG_image_9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/RH_Headshot.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/Screenshot_2023-12-30_at_9.25.31_AM.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/Screenshot_2024-01-03_at_3.25.41_PM.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/erb_headshot.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/headshot (1).JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/headshot (2).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/headshot.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/headshot.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/kaczmarek-dan_%282%29.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/mentors/pic.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/change.py" beforeDir="false" afterPath="$PROJECT_DIR$/change.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/helpers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/functions.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/functions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/game.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/leaderboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/leaderboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/mentors.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/schedule.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,25 +96,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/karti/OneDrive/Desktop/Personal Projects/NextLevel/static/img/others",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.templateLanguages.PyTemplateLanguageModulesConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/karti/OneDrive/Desktop/Personal Projects/NextLevel&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.templateLanguages.PyTemplateLanguageModulesConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\karti\OneDrive\Desktop\Personal Projects\NextLevel" />
+      <recent name="C:\Users\karti\OneDrive\Desktop\Personal Projects\NextLevel\static\img\mentors" />
       <recent name="C:\Users\karti\OneDrive\Desktop\Personal Projects\NextLevel\static\img\others" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -87,26 +124,19 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="d2" />
+    <configuration name="NextLevel" type="Python.FlaskServer">
+      <module name="NextLevel" />
+      <option name="target" value="$PROJECT_DIR$/main.py" />
+      <option name="targetType" value="PATH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
+      <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
@@ -115,11 +145,6 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -166,6 +191,14 @@
       <workItem from="1704401054713" duration="271000" />
       <workItem from="1704816029405" duration="443000" />
       <workItem from="1704824669233" duration="8825000" />
+      <workItem from="1705953309599" duration="39000" />
+      <workItem from="1706023318932" duration="7968000" />
+      <workItem from="1706116371330" duration="391000" />
+      <workItem from="1706132371388" duration="1885000" />
+      <workItem from="1706150467167" duration="278000" />
+      <workItem from="1706291888259" duration="719000" />
+      <workItem from="1706380208239" duration="489000" />
+      <workItem from="1706487169996" duration="386000" />
     </task>
     <task id="LOCAL-00001" summary="Today's">
       <created>1676044315800</created>
@@ -196,6 +229,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="Today's" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/NextLevel$hello.coverage" NAME="hello Coverage Results" MODIFIED="1706052179491" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/d2$main.coverage" NAME="main Coverage Results" MODIFIED="1671638968681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -58,7 +58,7 @@ li {
 }
 
 .game label {
-    padding: 10;
+    padding: 10px;
 }
 
 h1 {
@@ -183,10 +183,8 @@ div.desc {
 
 /* Style the tab content */
 .tabcontent {
-    float: center;
     text-align: center;
     width: 70%;
-    height: 55%;
     border-left: none;
     height: 300px;
     background: #005bbb;

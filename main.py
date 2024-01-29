@@ -13,7 +13,12 @@ db = mongo_client["next-level"]
 userpass = db["userpass"]
 usertoken = db["usertoken"]
 teampts = db["teampts"]
-
+correct_answers = {
+        "Q1": "AMDFH", "Q2": "LNSGE", "Q3": "RMSGT", "Q4": "SZZJK", "Q5": "TMMAR",
+        "Q6": "TVSGH", "Q7": "ALPXZ", "Q8": "XMRKM", "Q9": "WHLPS", "Q10": "JSDRJ",
+        "Q11": "XWEWY", "Q12": "PYMJT", "Q13": "BWUFL", "Q14": "WPPQB", "Q15": "DHJPK",
+        "Q16": {'ZYOGW', 'JETCE', 'YRQOP', 'WSXXE', 'WVDFX', 'EQXMO', 'QGPHM', 'MWWYT', 'ZURAO', 'ZCTEH', 'EUKGB', 'MCJFG', 'QMKUV', 'YOSSO', 'MYBXZ', 'RMKST', 'TCOOJ', 'UYBIO', 'CBPQH', 'SUPMI', 'UDCUE', 'RPSDO', 'LANMO', 'ZKTNO', 'TIROT', 'ZBBKW', 'CUBWG', 'OTWMQ', 'GBYKG', 'EYTTN', 'UYDOK', 'LJFOZ', 'MSDGD', 'KEXBH', 'HOMRD', 'LBWKT', 'BCCOA', 'LJTCZ', 'WIZNB', 'EBJAV', 'KHQTH', 'CVNZY', 'OUKFH', 'MMJLO', 'WLHIG', 'TXSIL', 'PEUGB', 'XVLHA', 'MIVNT', 'MCSZK'}
+    }
 
 @app.route('/leaderboard_data')
 def leaderboard_data():
@@ -43,7 +48,7 @@ def game():
     user = ""
     token = request.cookies.get('token')
     questions_answered_correctly = []
-
+    all_q16_used = False
     if token:
         user_data = usertoken.find_one({"token": token})
         if user_data:
@@ -51,8 +56,10 @@ def game():
             team_data = teampts.find_one({"username": user})
             if team_data:
                 questions_answered_correctly = team_data.get("questions", [])
+                used_q16_codes = team_data.get("used_q16_codes", [])
+                all_q16_used = set(used_q16_codes) == set(correct_answers["Q16"])
 
-    return render_template('game.html', team=user, questions_correct=questions_answered_correctly)
+    return render_template('game.html', team=user, questions_correct=questions_answered_correctly, all_q16_used=all_q16_used)
 
 
 
@@ -138,15 +145,21 @@ def submit():
         return "User not authenticated", 403
 
     username = user_data["username"]
-    correct_answers = {
-        "Q1": "AMDFH", "Q2": "LNSGE", "Q3": "RMSGT", "Q4": "SZZJK", "Q5": "TMMAR",
-        "Q6": "TVSGH", "Q7": "ALPXZ", "Q8": "XMRKM", "Q9": "WHLPS", "Q10": "JSDRJ",
-        "Q11": "XWEWY", "Q12": "PYMJT", "Q13": "BWUFL", "Q14": "WPPQB", "Q15": "DHJPK"
-    }
+    team_data = teampts.find_one({"username": username})
+    team_used_q16_codes = team_data.get("used_q16_codes", []) if team_data else []
+
+    all_used_q16_codes = [code for team in teampts.find() for code in team.get("used_q16_codes", [])]
+
     questions_correct = []
     for q, answer in correct_answers.items():
         user_answer = request.form.get(q)
-        if user_answer and user_answer == answer:
+        if q == "Q16":
+            if user_answer in answer and user_answer not in all_used_q16_codes:
+                team_used_q16_codes.append(user_answer)
+                all_used_q16_codes.append(user_answer)
+                teampts.update_one({"username": username}, {"$set": {"used_q16_codes": team_used_q16_codes}}, upsert=True)
+                questions_correct.append(q)
+        elif user_answer == answer:
             questions_correct.append(q)
 
     if questions_correct:

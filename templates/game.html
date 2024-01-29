@@ -56,7 +56,7 @@
                 <div class="col-sm-12 dopup">
                     <h1> Team {{team}}</h1>
 
-                    {% for q_num in range(1, 16) %}
+                    {% for q_num in range(1, 17) %}
                     {% if q_num % 2 == 1 %}
                     <div class="row flex-row">
                         {% endif %}
@@ -65,47 +65,48 @@
                             {% set question_label = [
                             "1. Tell us something that makes your team special! 10 Points",
                             "2. Find a Student Engagement Ambassador and upload a selfie with them. 10 Points",
-                            "3. Locate your LinkedIn QR Code and connect with 3 people using the scan tab. 50 Points",
+                            "3. Locate your LinkedIn QR Code and connect with 3 people using the scan tab. 30 Points",
                             "4. Tell us your best piece of advice for networking or ask a question you have about
                             networking. 10 Points",
                             "5. Tell us one unique thing about you that you'll share in interviews. 10 Points",
                             "6. Choose three words that describe you best. 10 Points",
                             "7. What is one way we, as a university, can have more representation at our 'tables'? 20
-                            Points",
+                            points",
                             "8. Tell us one SMART goal you want to achieve? 50 Points",
                             "9. What is one thing you learned about intersectionality from the video? 50 Points",
                             "10. Compile a list here of 5-7 traits that reflect your ideal qualities in a supervisor. 50
                             Points",
                             "11. Complete this form to practice 'taking the temperature' by answering the questions
-                            above
-                            with your team. 20 Points",
+                            above with your team. 20 Points",
                             "12. What type of mentoring style do you connect with the most? Write a quick thank you note
-                            to
-                            the mentors and be sure to include the best advice you heard today and a tip/someone you
-                            met. 75
-                            Points",
+                            to the mentors and be sure to include the best advice you heard today and a tip/someone you
+                            met. 50 Points",
                             "13. What is one element that contributes to emotional intelligence? 10 Points",
                             "14. What is another area in life that having good public speaking skills is important? 10
                             Points",
                             "15. What is your favorite form of storytelling? Is it orally, digitally, or written? 10
-                            Points"
+                            Points",
+                            "16. Mentor Bonuses. 10 points each"
                             ][q_num - 1] %}
 
-                            <label for="Q{{ q_num }}">{{ question_label }} {% if 'Q' + q_num|string in questions_correct
-                                %}<span class="fa fa-check text-success"></span>{% endif %}</label>
+                            <label for="Q{{ q_num }}">{{ question_label }}</label>
+
+                            {% if q_num != 16 %}
                             {% if 'Q' + q_num|string in questions_correct %}
                             <input type="text" id="Q{{ q_num }}" name="Q{{ q_num }}" class="form__input" disabled>
                             {% else %}
                             <input type="text" id="Q{{ q_num }}" name="Q{{ q_num }}" class="form__input">
+                            {% endif %}
+                            {% else %}
+                            <input type="text" id="Q16" name="Q16" class="form__input" {% if all_q16_used %}disabled{%
+                                   endif %}>
                             {% endif %}
                         </div>
                         {% if q_num % 2 == 0 %}
                     </div>
                     {% endif %}
                     {% endfor %}
-                    {% if 15 % 2 == 1 %}
-                </div> <!-- Close the flex-row if the number of questions is odd -->
-                {% endif %}
+                </div>
                 <div class="col-sm-12 dopup text-center">
                     <input type="submit" value="Submit" class="btn">
                 </div>
