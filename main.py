@@ -6,6 +6,7 @@ from flask import Flask, request, make_response, render_template, redirect, url_
 from pymongo import MongoClient
 import helpers
 from flask import jsonify
+import csv
 
 app = Flask(__name__)
 mongo_client = MongoClient("mongo")
@@ -14,11 +15,27 @@ userpass = db["userpass"]
 usertoken = db["usertoken"]
 teampts = db["teampts"]
 correct_answers = {
-        "Q1": "AMDFH", "Q2": "LNSGE", "Q3": "RMSGT", "Q4": "SZZJK", "Q5": "TMMAR",
-        "Q6": "TVSGH", "Q7": "ALPXZ", "Q8": "XMRKM", "Q9": "WHLPS", "Q10": "JSDRJ",
-        "Q11": "XWEWY", "Q12": "PYMJT", "Q13": "BWUFL", "Q14": "WPPQB", "Q15": "DHJPK",
-        "Q16": {'ZYOGW', 'JETCE', 'YRQOP', 'WSXXE', 'WVDFX', 'EQXMO', 'QGPHM', 'MWWYT', 'ZURAO', 'ZCTEH', 'EUKGB', 'MCJFG', 'QMKUV', 'YOSSO', 'MYBXZ', 'RMKST', 'TCOOJ', 'UYBIO', 'CBPQH', 'SUPMI', 'UDCUE', 'RPSDO', 'LANMO', 'ZKTNO', 'TIROT', 'ZBBKW', 'CUBWG', 'OTWMQ', 'GBYKG', 'EYTTN', 'UYDOK', 'LJFOZ', 'MSDGD', 'KEXBH', 'HOMRD', 'LBWKT', 'BCCOA', 'LJTCZ', 'WIZNB', 'EBJAV', 'KHQTH', 'CVNZY', 'OUKFH', 'MMJLO', 'WLHIG', 'TXSIL', 'PEUGB', 'XVLHA', 'MIVNT', 'MCSZK'}
-    }
+    "Q1": "AMDFH", "Q2": "LNSGE", "Q3": "RMSGT", "Q4": "SZZJK", "Q5": "TMMAR",
+    "Q6": "TVSGH", "Q7": "ALPXZ", "Q8": "XMRKM", "Q9": "WHLPS", "Q10": "JSDRJ",
+    "Q11": "XWEWY", "Q12": "PYMJT", "Q13": "BWUFL", "Q14": "WPPQB", "Q15": "DHJPK",
+    "Q16": {'ZYOGW', 'JETCE', 'YRQOP', 'WSXXE', 'WVDFX', 'EQXMO', 'QGPHM', 'MWWYT', 'ZURAO', 'ZCTEH', 'EUKGB', 'MCJFG',
+            'QMKUV', 'YOSSO', 'MYBXZ', 'RMKST', 'TCOOJ', 'UYBIO', 'CBPQH', 'SUPMI', 'UDCUE', 'RPSDO', 'LANMO', 'ZKTNO',
+            'TIROT', 'ZBBKW', 'CUBWG', 'OTWMQ', 'GBYKG', 'EYTTN', 'UYDOK', 'LJFOZ', 'MSDGD', 'KEXBH', 'HOMRD', 'LBWKT',
+            'BCCOA', 'LJTCZ', 'WIZNB', 'EBJAV', 'KHQTH', 'CVNZY', 'OUKFH', 'MMJLO', 'WLHIG', 'TXSIL', 'PEUGB', 'XVLHA',
+            'MIVNT', 'MCSZK'}
+}
+
+
+def register_users_from_csv():
+    with open('Username.csv', mode='r') as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        for row in csv_reader:
+            username = row['Username']
+            password = row['Password']
+            if not userpass.find_one({"username": username}):
+                password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+                userpass.insert_one({"username": username, "password": password_hash})
+
 
 @app.route('/leaderboard_data')
 def leaderboard_data():
@@ -59,8 +76,8 @@ def game():
                 used_q16_codes = team_data.get("used_q16_codes", [])
                 all_q16_used = set(used_q16_codes) == set(correct_answers["Q16"])
 
-    return render_template('game.html', team=user, questions_correct=questions_answered_correctly, all_q16_used=all_q16_used)
-
+    return render_template('game.html', team=user, questions_correct=questions_answered_correctly,
+                           all_q16_used=all_q16_used)
 
 
 @app.route('/leaderboard')
@@ -98,6 +115,7 @@ def login():
     visits = int(allcookies.get('visits', 0)) + 1
     response.set_cookie('visits', str(visits), max_age=3600)
     return response
+
 
 @app.route('/registeruser', methods=['POST'])
 def register_user():
@@ -157,7 +175,8 @@ def submit():
             if user_answer in answer and user_answer not in all_used_q16_codes:
                 team_used_q16_codes.append(user_answer)
                 all_used_q16_codes.append(user_answer)
-                teampts.update_one({"username": username}, {"$set": {"used_q16_codes": team_used_q16_codes}}, upsert=True)
+                teampts.update_one({"username": username}, {"$set": {"used_q16_codes": team_used_q16_codes}},
+                                   upsert=True)
                 questions_correct.append(q)
         elif user_answer == answer:
             questions_correct.append(q)
@@ -178,5 +197,6 @@ def other_image(filename):
     return send_from_directory('static/img/others', filename)
 
 
+register_users_from_csv()
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=3000)

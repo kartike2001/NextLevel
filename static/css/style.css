@@ -210,8 +210,8 @@ div.desc {
 }
 
 @media screen and(max-width: 1024px) {
-    .card-slider {
-        width: 80%;
+    .card {
+        width: 30%;
     }
 }
 
@@ -238,8 +238,8 @@ div.desc {
 }
 
 @media screen and(max-width: 600px) {
-    .card-slider .card {
-        height: auto;
+    .card {
+        width: 48%;
     }
 }
 
@@ -562,8 +562,7 @@ section {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: #6b369a;
-    background: #fff;
+
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     color: #005bbb;
     height: 50px;
@@ -713,7 +712,7 @@ section {
 }
 
 .styled-table thead tr {
-    background-color: #009879;
+    background-color: #0088AFFF;
     color: #ffffff;
     text-align: left;
 }
@@ -732,12 +731,12 @@ section {
 }
 
 .styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
+    border-bottom: 2px solid #0088AFFF;
 }
 
 .styled-table tbody tr.active-row {
     font-weight: bold;
-    color: #009879;
+    color: #0088AFFF;
 }
 
 /*new css*/
@@ -786,7 +785,7 @@ section {
 }
 
 .row > h2 {
-    color: #008080;
+    color: #1b8ae5;
 }
 
 .login_form {
@@ -812,7 +811,7 @@ form {
 }
 
 .form__input:focus {
-    border-bottom-color: #008080;
+    border-bottom-color: #1b8ae5;
     box-shadow: 0 0 5px rgba(0, 80, 80, 0.4);
     border-radius: 4px;
 }
@@ -821,17 +820,17 @@ form {
     transition: all 0.5s ease;
     width: 70%;
     border-radius: 30px;
-    color: #008080;
+    color: #1b8ae5;
     font-weight: 600;
     background-color: #fff;
-    border: 1px solid #008080;
+    border: 1px solid #1b8ae5;
     margin-top: 1.5em;
     margin-bottom: 1em;
 }
 
 .btn:hover,
 .btn:focus {
-    background-color: #008080;
+    background-color: #1b8ae5;
     color: #fff;
 }
 
@@ -1084,4 +1083,82 @@ form {
 .navbar-inverse .navbar-nav > li > a:hover {
     color: #fff;
     background-color: #005bbb;
+}
+
+/*@media screen and (max-width: 768px) {*/
+/*    .main-content {*/
+/*        flex-direction: column;*/
+/*    }*/
+
+/*    .company__info, .login_form {*/
+/*        width: 100%; !* Ensure both elements take full width *!*/
+/*    }*/
+
+/*    .company__info {*/
+/*        order: -1; !* This ensures that the company info (and thus the Crest.png) is above the login form *!*/
+/*    }*/
+/*}*/
+
+@media screen and (max-width: 768px) {
+    .navbar-header {
+        float: none;
+    }
+
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+
+    .navbar-toggle {
+        display: block;
+    }
+
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+
+    .navbar-nav>li {
+        float: none;
+    }
+
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .collapse.in{
+        display:block !important;
+    }
+
+    .form__input, .btn {
+        font-size: 16px; /* Increase font size for better readability */
+        padding: 15px; /* Increase padding for easier interaction */
+    }
+
+    .main-content, .login_form, .company__info {
+        padding: 15px;
+        width: 100%; /* Ensure content uses full width on small screens */
+    }
+
+    .company__info, .company__logo img {
+        display: none; /* Hide company info block or logo on very small screens if necessary */
+    }
+
+    h2, p, .navbar-brand {
+        font-size: 18px; /* Adjust font size for readability on small screens */
+    }
 }
