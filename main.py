@@ -25,6 +25,13 @@ correct_answers = {
             'MIVNT', 'MCSZK'}
 }
 
+question_points = {
+    "Q1": 10, "Q2": 10, "Q3": 30, "Q4": 10, "Q5": 10,
+    "Q6": 10, "Q7": 20, "Q8": 50, "Q9": 50, "Q10": 50,
+    "Q11": 20, "Q12": 50, "Q13": 10, "Q14": 10, "Q15": 10,
+    "Q16": 10
+}
+
 
 def register_users_from_csv():
     with open('Username.csv', mode='r') as csv_file:
@@ -35,20 +42,6 @@ def register_users_from_csv():
             if not userpass.find_one({"username": username}):
                 password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
                 userpass.insert_one({"username": username, "password": password_hash})
-
-
-@app.route('/leaderboard_data')
-def leaderboard_data():
-    leaderboarddic = {}
-    for entry in teampts.find():
-        username = entry.get("username")
-        questions = entry.get("questions", [])
-        for q in questions:
-            points = 10
-            leaderboarddic[username] = leaderboarddic.get(username, 0) + points
-
-    sortLead = helpers.sort_teams(leaderboarddic)
-    return jsonify(sortLead)
 
 
 @app.route('/')
@@ -82,21 +75,20 @@ def game():
 
 @app.route('/leaderboard')
 def leaderboard():
-    leaderboarddic = {}
-    for entry in teampts.find():
-        username = entry.get("username")
-        questions = entry.get("questions", [])
-        for q in questions:
-            points = 10
-            leaderboarddic[username] = leaderboarddic.get(username, 0) + points
+    leaderboard_data = teampts.find().sort("points", -1)
+    leaderboard_list = [(entry.get("username"), entry.get("points", 0)) for entry in leaderboard_data]
 
-    sortLead = helpers.sort_teams(leaderboarddic)
-    leader = "<br>".join(f"{team} : {score}" for team, score in sortLead.items())
-
-    response = make_response(render_template('leaderboard.html', leader=leader))
+    response = make_response(render_template('leaderboard.html', leaderboard=leaderboard_list))
     visits = int(request.cookies.get('visits', 0)) + 1
     response.set_cookie('visits', str(visits), max_age=3600)
     return response
+
+
+@app.route('/leaderboard_data')
+def leaderboard_data():
+    sorted_data = teampts.find().sort("points", -1)
+    leaderboard_data = [{"username": entry.get("username"), "points": entry.get("points", 0)} for entry in sorted_data]
+    return jsonify(leaderboard_data)
 
 
 @app.route('/mentors')
@@ -165,10 +157,11 @@ def submit():
     username = user_data["username"]
     team_data = teampts.find_one({"username": username})
     team_used_q16_codes = team_data.get("used_q16_codes", []) if team_data else []
-
     all_used_q16_codes = [code for team in teampts.find() for code in team.get("used_q16_codes", [])]
 
     questions_correct = []
+    total_points = 0  # Initialize total points to 0
+
     for q, answer in correct_answers.items():
         user_answer = request.form.get(q)
         if q == "Q16":
@@ -178,12 +171,20 @@ def submit():
                 teampts.update_one({"username": username}, {"$set": {"used_q16_codes": team_used_q16_codes}},
                                    upsert=True)
                 questions_correct.append(q)
+                total_points += question_points[q]
         elif user_answer == answer:
             questions_correct.append(q)
+            total_points += question_points[q]
 
     if questions_correct:
-        teampts.update_one({"username": username}, {"$push": {"questions": {"$each": questions_correct}}}, upsert=True)
-
+        teampts.update_one(
+            {"username": username},
+            {
+                "$push": {"questions": {"$each": questions_correct}},
+                "$inc": {"points": total_points}
+            },
+            upsert=True
+        )
     return redirect(url_for('leaderboard'))
 
 

@@ -20,27 +20,29 @@
           rel="stylesheet">
     <script src="https://kit.fontawesome.com/c7e593ee29.js" crossorigin="anonymous"></script>
     <script>
-    $(document).ready(function(){
-        function updateLeaderboard() {
-            $.ajax({
-                url: '/leaderboard_data', // Make sure this route is defined in your Flask app
-                type: 'GET',
-                success: function(data) {
-                    var leaderboardHTML = '';
-                    for (var team in data) {
-                        leaderboardHTML += team + ': ' + data[team] + '<br>';
-                    }
-                    $('.dopup h2').html(leaderboardHTML);
-                },
-                error: function(error) {
-                    console.log('Error:', error);
-                }
-            });
-        }
 
-        setInterval(updateLeaderboard, 1000); // Update every 5 seconds
-    });
-</script>
+        $(document).ready(function () {
+            function updateLeaderboard() {
+                $.ajax({
+                    url: '/leaderboard_data', // Ensure this route is defined in your Flask app
+                    type: 'GET',
+                    success: function (data) {
+                        var leaderboardHTML = '';
+                        data.forEach(function (entry) {
+                            leaderboardHTML += entry.username + ': ' + entry.points + '<br>';
+                        });
+                        $('.dopup h2').html(leaderboardHTML);
+                    },
+                    error: function (error) {
+                        console.log('Error:', error);
+                    }
+                });
+            }
+
+            setInterval(updateLeaderboard, 1000);
+        });
+    </script>
+    </script>
 </head>
 <body>
 
@@ -84,12 +86,9 @@
 
             <div class="col-sm-12 dopup ">
                 <h1></h1>
-
                 <div class="col-sm-12 col-xs-12 np ">
                     <h2 class="text-center">{{leader}}</h2>
                 </div>
-
-
             </div>
         </div>
     </div>
