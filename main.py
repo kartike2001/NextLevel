@@ -198,6 +198,7 @@ def login_user():
         return "Username not found or password is incorrect", 400
 
 
+@app.route('/submit', methods=['POST'])
 def submit():
     token = request.cookies.get('token')
     if not token:
@@ -213,9 +214,9 @@ def submit():
         team_data = {"username": username, "used_q16_codes": [], "questions": [], "points": 0}
         teampts.insert_one(team_data)
 
-    team_used_q16_codes = set(team_data.get("used_q16_codes", []))
+    team_used_q16_codes = team_data.get("used_q16_codes", [])
     team_answered_questions = team_data.get("questions", [])
-    all_used_q16_codes = set(code for team in teampts.find() for code in team.get("used_q16_codes", []))
+    all_used_q16_codes = [code for team in teampts.find() for code in team.get("used_q16_codes", [])]
 
     questions_correct = []
     total_points = 0
@@ -223,10 +224,12 @@ def submit():
     for q, answer in correct_answers.items():
         user_answer = request.form.get(q)
         if q == "Q16":
-            if user_answer in answer and user_answer not in all_used_q16_codes:
-                team_used_q16_codes.add(user_answer)  # Add the unique code for Q16
-                questions_correct.append(q)  # Mark Q16 as correctly answered
-                total_points += question_points[q]  # Only add points if the code is unique globally
+            if user_answer in answer:
+                if user_answer not in all_used_q16_codes:  # Change here to check global use
+                    team_used_q16_codes.append(user_answer)
+                    if q not in questions_correct:  # Ensure Q16 is marked correctly once per submission
+                        questions_correct.append(q)
+                    total_points += question_points[q]  # Add points for Q16 once per unique code
         else:
             if user_answer == answer and q not in team_answered_questions:
                 questions_correct.append(q)
@@ -236,12 +239,11 @@ def submit():
         teampts.update_one(
             {"username": username},
             {
-                "$set": {
-                    "used_q16_codes": list(team_used_q16_codes),  # Ensure unique Q16 codes are tracked
-                    "questions": list(set(team_answered_questions) | set(questions_correct))  # Prevent duplicates
-                },
+                "$addToSet": {"questions": {"$each": questions_correct}},
+                "$set": {"used_q16_codes": team_used_q16_codes},
                 "$inc": {"points": total_points}
-            }
+            },
+            upsert=True
         )
 
     return redirect(url_for('leaderboard'))
