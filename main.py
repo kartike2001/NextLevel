@@ -224,18 +224,18 @@ def submit():
     for q, answer in correct_answers.items():
         user_answer = request.form.get(q)
         if q == "Q16":
-            if user_answer in answer and user_answer not in all_used_q16_codes:
-                if user_answer not in team_used_q16_codes:  # Check if this team hasn't used this code before
+            if user_answer in answer:
+                if user_answer not in all_used_q16_codes:  # Change here to check global use
                     team_used_q16_codes.append(user_answer)
-                    questions_correct.append(q)  # Add to team's correct questions if not already present
-                    total_points += question_points[q]  # Add points for Q16
+                    if q not in questions_correct:  # Ensure Q16 is marked correctly once per submission
+                        questions_correct.append(q)
+                    total_points += question_points[q]  # Add points for Q16 once per unique code
         else:
             if user_answer == answer and q not in team_answered_questions:
                 questions_correct.append(q)
                 total_points += question_points[q]
 
     if questions_correct:
-        # Update team data with new correct answers and points, ensuring Q16 can be multiple but unique
         teampts.update_one(
             {"username": username},
             {
@@ -296,5 +296,6 @@ def fix_q16_submissions():
 fix_q16_submissions()
 register_users_from_csv(teams_to_register)
 fix_duplicate_points()
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=3000)
