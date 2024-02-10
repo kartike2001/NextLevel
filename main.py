@@ -258,6 +258,7 @@ def mentor_image(filename):
 def other_image(filename):
     return send_from_directory('static/img/others', filename)
 
+
 def fix_q16_submissions():
     all_teams_data = teampts.find()
     all_used_q16_codes = set([code for team in all_teams_data for code in team.get("used_q16_codes", [])])
@@ -291,8 +292,7 @@ def fix_q16_submissions():
 
         print(f"Processed team {username}: Added {points_to_add} points for Q16 codes {corrected_q16_codes}")
 
-# Call the function to start the fixing process
-fix_q16_submissions()
+
 fix_q16_submissions()
 register_users_from_csv(teams_to_register)
 fix_duplicate_points()
