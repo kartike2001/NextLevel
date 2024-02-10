@@ -41,6 +41,41 @@ teams_to_register = [
 ]
 
 
+def fix_duplicate_points():
+    corrected_teams = []
+
+    for team in teampts.find():
+        username = team["username"]
+        questions = team.get("questions", [])
+        if not questions:
+            continue
+
+        question_counts = {q: questions.count(q) for q in questions if q != "Q16"}
+        duplicates = {q: count for q, count in question_counts.items() if count > 1}
+
+        if not duplicates:
+            continue  # Skip teams without duplicates
+
+        # Calculate points to be deducted
+        points_to_deduct = sum(question_points[q] * (count - 1) for q, count in duplicates.items())
+
+        # Remove duplicates from the questions list
+        updated_questions = questions.copy()
+        for q, count in duplicates.items():
+            while updated_questions.count(q) > 1:
+                updated_questions.remove(q)
+
+        # Update the team record
+        teampts.update_one(
+            {"username": username},
+            {"$set": {"questions": updated_questions}, "$inc": {"points": -points_to_deduct}}
+        )
+
+        corrected_teams.append(username)
+
+    print(f"Corrected teams: {corrected_teams}")
+
+
 def register_users_from_csv(teams):
     for username, _ in teams:
         userpass.delete_one({"username": username})
@@ -60,6 +95,7 @@ def register_users_from_csv(teams):
             userpass.insert_one({"username": username, "password": password_hash})
         else:
             print(f"User {username} already exists.")
+
 
 @app.route('/')
 def index():
@@ -98,6 +134,7 @@ def leaderboard():
     response = make_response(render_template('leaderboard.html', leaderboard=leaderboard_list))
     visits = int(request.cookies.get('visits', 0)) + 1
     response.set_cookie('visits', str(visits), max_age=3600)
+
     return response
 
 
@@ -165,7 +202,7 @@ def login_user():
 def submit():
     token = request.cookies.get('token')
     if not token:
-        return "No token provided", 403
+        return "Please Login", 403
 
     user_data = usertoken.find_one({"token": token})
     if not user_data:
@@ -173,11 +210,16 @@ def submit():
 
     username = user_data["username"]
     team_data = teampts.find_one({"username": username})
-    team_used_q16_codes = team_data.get("used_q16_codes", []) if team_data else []
+    if not team_data:
+        team_data = {"username": username, "used_q16_codes": [], "questions": [], "points": 0}
+        teampts.insert_one(team_data)
+
+    team_used_q16_codes = team_data.get("used_q16_codes", [])
+    team_answered_questions = team_data.get("questions", [])
     all_used_q16_codes = [code for team in teampts.find() for code in team.get("used_q16_codes", [])]
 
     questions_correct = []
-    total_points = 0  # Initialize total points to 0
+    total_points = 0
 
     for q, answer in correct_answers.items():
         user_answer = request.form.get(q)
@@ -187,17 +229,19 @@ def submit():
                 all_used_q16_codes.append(user_answer)
                 teampts.update_one({"username": username}, {"$set": {"used_q16_codes": team_used_q16_codes}},
                                    upsert=True)
+                if q not in team_answered_questions:
+                    questions_correct.append(q)
+                    total_points += question_points[q]
+        else:
+            if user_answer == answer and q not in team_answered_questions:
                 questions_correct.append(q)
                 total_points += question_points[q]
-        elif user_answer == answer:
-            questions_correct.append(q)
-            total_points += question_points[q]
 
     if questions_correct:
         teampts.update_one(
             {"username": username},
             {
-                "$push": {"questions": {"$each": questions_correct}},
+                "$addToSet": {"questions": {"$each": questions_correct}},
                 "$inc": {"points": total_points}
             },
             upsert=True
@@ -216,5 +260,6 @@ def other_image(filename):
 
 
 register_users_from_csv(teams_to_register)
+fix_duplicate_points()
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=3000)
