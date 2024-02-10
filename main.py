@@ -32,8 +32,18 @@ question_points = {
     "Q16": 10
 }
 
+teams_to_register = [
+    ("AKG", "AlbrightKnox"),
+    ("Shea's Theater", "PerformingArts"),
+    ("Erie Canal", "FifteenMiles"),
+    ("Buffalo Bandits", "BanditLand"),
+    ("Disco", "WorldsLargest")
+]
 
-def register_users_from_csv():
+
+def register_users_from_csv(teams):
+    for username, _ in teams:
+        userpass.delete_one({"username": username})
     with open('Username.csv', mode='r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
@@ -42,7 +52,14 @@ def register_users_from_csv():
             if not userpass.find_one({"username": username}):
                 password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
                 userpass.insert_one({"username": username, "password": password_hash})
-
+    for username, _ in teams:
+        userpass.delete_one({"username": username})
+    for username, password in teams:
+        if not userpass.find_one({"username": username}):
+            password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+            userpass.insert_one({"username": username, "password": password_hash})
+        else:
+            print(f"User {username} already exists.")
 
 @app.route('/')
 def index():
@@ -198,6 +215,6 @@ def other_image(filename):
     return send_from_directory('static/img/others', filename)
 
 
-register_users_from_csv()
+register_users_from_csv(teams_to_register)
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=3000)
