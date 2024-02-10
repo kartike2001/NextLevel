@@ -260,5 +260,34 @@ def other_image(filename):
 register_users_from_csv(teams_to_register)
 fix_duplicate_points()
 
+def update_q16_code_usage():
+    all_teams = teampts.find()  # Fetch all team records
+    global_used_q16_codes = set()  # To keep track of all unique Q16 codes used globally
+
+    for team in all_teams:
+        username = team["username"]
+        used_q16_codes = set(team.get("used_q16_codes", []))
+
+        # Filter out the Q16 codes that have been used more than once globally
+        new_used_q16_codes = used_q16_codes - global_used_q16_codes
+
+        # Update global set of used Q16 codes
+        global_used_q16_codes.update(new_used_q16_codes)
+
+        # Calculate the points to be adjusted
+        points_to_adjust = len(new_used_q16_codes) * question_points["Q16"]
+
+        # If there are codes that were counted more than once, update the team record
+        if new_used_q16_codes != used_q16_codes:
+            teampts.update_one(
+                {"username": username},
+                {"$set": {"used_q16_codes": list(new_used_q16_codes), "points": points_to_adjust}}
+            )
+
+    print("Updated Q16 code usage and points for all teams.")
+
+update_q16_code_usage()
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=3000)
