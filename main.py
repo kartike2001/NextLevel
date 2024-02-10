@@ -22,7 +22,23 @@ correct_answers = {
             'QMKUV', 'YOSSO', 'MYBXZ', 'RMKST', 'TCOOJ', 'UYBIO', 'CBPQH', 'SUPMI', 'UDCUE', 'RPSDO', 'LANMO', 'ZKTNO',
             'TIROT', 'ZBBKW', 'CUBWG', 'OTWMQ', 'GBYKG', 'EYTTN', 'UYDOK', 'LJFOZ', 'MSDGD', 'KEXBH', 'HOMRD', 'LBWKT',
             'BCCOA', 'LJTCZ', 'WIZNB', 'EBJAV', 'KHQTH', 'CVNZY', 'OUKFH', 'MMJLO', 'WLHIG', 'TXSIL', 'PEUGB', 'XVLHA',
-            'MIVNT', 'MCSZK'}
+            'MIVNT', 'MCSZK',
+            'BFJLT',
+            'BGZIX',
+            'GNNZT',
+            'HLRRC',
+            'LGEFI',
+            'MNKEM',
+            'NZTSF',
+            'QCPMW',
+            'RSKJW',
+            'RZASS',
+            'SOJHR',
+            'THSFN',
+            'WHSKT',
+            'WJLIN',
+            'WPQNF'
+            }
 }
 
 question_points = {
