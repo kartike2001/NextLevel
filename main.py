@@ -216,7 +216,6 @@ def submit():
 
     team_used_q16_codes = team_data.get("used_q16_codes", [])
     team_answered_questions = team_data.get("questions", [])
-    all_used_q16_codes = [code for team in teampts.find() for code in team.get("used_q16_codes", [])]
 
     questions_correct = []
     total_points = 0
@@ -224,14 +223,12 @@ def submit():
     for q, answer in correct_answers.items():
         user_answer = request.form.get(q)
         if q == "Q16":
-            if user_answer in answer:
-                if user_answer not in all_used_q16_codes:  # Change here to check global use
-                    team_used_q16_codes.append(user_answer)
-                    if q not in questions_correct:  # Ensure Q16 is marked correctly once per submission
-                        questions_correct.append(q)
-                    total_points += question_points[q]  # Add points for Q16 once per unique code
+            if user_answer in answer and user_answer not in team_used_q16_codes:  # Unique Q16 code submission check
+                team_used_q16_codes.append(user_answer)
+                questions_correct.append(q)
+                total_points += question_points[q]
         else:
-            if user_answer == answer and q not in team_answered_questions:
+            if user_answer == answer and q not in team_answered_questions:  # Prevent double submission for other questions
                 questions_correct.append(q)
                 total_points += question_points[q]
 
@@ -249,6 +246,7 @@ def submit():
     return redirect(url_for('leaderboard'))
 
 
+
 @app.route('/assets/img/mentors/<filename>')
 def mentor_image(filename):
     return send_from_directory('static/img/mentors', filename)
@@ -259,41 +257,6 @@ def other_image(filename):
     return send_from_directory('static/img/others', filename)
 
 
-def fix_q16_submissions():
-    all_teams_data = teampts.find()
-    all_used_q16_codes = set([code for team in all_teams_data for code in team.get("used_q16_codes", [])])
-    correct_q16_codes = correct_answers["Q16"]
-
-    for team_data in all_teams_data:
-        username = team_data["username"]
-        team_used_q16_codes = set(team_data.get("used_q16_codes", []))
-        team_correct_q16_codes = team_used_q16_codes.intersection(correct_q16_codes)
-        team_answered_questions = team_data.get("questions", [])
-
-        # Points correction logic
-        points_to_add = 0
-        corrected_q16_codes = []
-
-        for code in team_correct_q16_codes:
-            if code not in all_used_q16_codes:  # Ensure the code wasn't used by another team
-                points_to_add += question_points["Q16"]
-                corrected_q16_codes.append(code)
-                all_used_q16_codes.add(code)  # Mark this code as used globally
-
-        # Update team data if there are points to add
-        if points_to_add > 0:
-            if "Q16" not in team_answered_questions:
-                team_answered_questions.append("Q16")
-            teampts.update_one(
-                {"username": username},
-                {"$set": {"used_q16_codes": list(team_used_q16_codes), "questions": team_answered_questions},
-                 "$inc": {"points": points_to_add}}
-            )
-
-        print(f"Processed team {username}: Added {points_to_add} points for Q16 codes {corrected_q16_codes}")
-
-
-fix_q16_submissions()
 register_users_from_csv(teams_to_register)
 fix_duplicate_points()
 
