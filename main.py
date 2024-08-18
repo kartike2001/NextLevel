@@ -1,12 +1,13 @@
+import csv
 import hashlib
 import random
 import string
 import bcrypt
-from flask import Flask, request, make_response, render_template, redirect, url_for, send_from_directory
+from flask import Flask, request, make_response, render_template, redirect, url_for, send_from_directory, jsonify
 from pymongo import MongoClient
 import helpers
-from flask import jsonify
-import csv
+import json
+import os
 
 app = Flask(__name__)
 mongo_client = MongoClient("mongo")
@@ -14,31 +15,19 @@ db = mongo_client["next-level"]
 userpass = db["userpass"]
 usertoken = db["usertoken"]
 teampts = db["teampts"]
+
 correct_answers = {
     "Q1": "AMDFH", "Q2": "LNSGE", "Q3": "RMSGT", "Q4": "SZZJK", "Q5": "TMMAR",
     "Q6": "TVSGH", "Q7": "ALPXZ", "Q8": "XMRKM", "Q9": "WHLPS", "Q10": "JSDRJ",
     "Q11": "XWEWY", "Q12": "PYMJT", "Q13": "BWUFL", "Q14": "WPPQB", "Q15": "DHJPK",
-    "Q16": {'ZYOGW', 'JETCE', 'YRQOP', 'WSXXE', 'WVDFX', 'EQXMO', 'QGPHM', 'MWWYT', 'ZURAO', 'ZCTEH', 'EUKGB', 'MCJFG',
-            'QMKUV', 'YOSSO', 'MYBXZ', 'RMKST', 'TCOOJ', 'UYBIO', 'CBPQH', 'SUPMI', 'UDCUE', 'RPSDO', 'LANMO', 'ZKTNO',
-            'TIROT', 'ZBBKW', 'CUBWG', 'OTWMQ', 'GBYKG', 'EYTTN', 'UYDOK', 'LJFOZ', 'MSDGD', 'KEXBH', 'HOMRD', 'LBWKT',
-            'BCCOA', 'LJTCZ', 'WIZNB', 'EBJAV', 'KHQTH', 'CVNZY', 'OUKFH', 'MMJLO', 'WLHIG', 'TXSIL', 'PEUGB', 'XVLHA',
-            'MIVNT', 'MCSZK',
-            'BFJLT',
-            'BGZIX',
-            'GNNZT',
-            'HLRRC',
-            'LGEFI',
-            'MNKEM',
-            'NZTSF',
-            'QCPMW',
-            'RSKJW',
-            'RZASS',
-            'SOJHR',
-            'THSFN',
-            'WHSKT',
-            'WJLIN',
-            'WPQNF'
-            }
+    "Q16": {
+        'ZYOGW', 'JETCE', 'YRQOP', 'WSXXE', 'WVDFX', 'EQXMO', 'QGPHM', 'MWWYT', 'ZURAO', 'ZCTEH', 'EUKGB', 'MCJFG',
+        'QMKUV', 'YOSSO', 'MYBXZ', 'RMKST', 'TCOOJ', 'UYBIO', 'CBPQH', 'SUPMI', 'UDCUE', 'RPSDO', 'LANMO', 'ZKTNO',
+        'TIROT', 'ZBBKW', 'CUBWG', 'OTWMQ', 'GBYKG', 'EYTTN', 'UYDOK', 'LJFOZ', 'MSDGD', 'KEXBH', 'HOMRD', 'LBWKT',
+        'BCCOA', 'LJTCZ', 'WIZNB', 'EBJAV', 'KHQTH', 'CVNZY', 'OUKFH', 'MMJLO', 'WLHIG', 'TXSIL', 'PEUGB', 'XVLHA',
+        'MIVNT', 'MCSZK', 'BFJLT', 'BGZIX', 'GNNZT', 'HLRRC', 'LGEFI', 'MNKEM', 'NZTSF', 'QCPMW', 'RSKJW', 'RZASS',
+        'SOJHR', 'THSFN', 'WHSKT', 'WJLIN', 'WPQNF'
+    }
 }
 
 question_points = {
@@ -48,79 +37,12 @@ question_points = {
     "Q16": 10
 }
 
-teams_to_register = [
-    ("AKG", "AlbrightKnox"),
-    ("Shea's Theater", "PerformingArts"),
-    ("Erie Canal", "FifteenMiles"),
-    ("Buffalo Bandits", "BanditLand"),
-    ("Disco", "WorldsLargest")
-]
-
-
-def fix_duplicate_points():
-    corrected_teams = []
-
-    for team in teampts.find():
-        username = team["username"]
-        questions = team.get("questions", [])
-        if not questions:
-            continue
-
-        question_counts = {q: questions.count(q) for q in questions if q != "Q16"}
-        duplicates = {q: count for q, count in question_counts.items() if count > 1}
-
-        if not duplicates:
-            continue  # Skip teams without duplicates
-
-        # Calculate points to be deducted
-        points_to_deduct = sum(question_points[q] * (count - 1) for q, count in duplicates.items())
-
-        # Remove duplicates from the questions list
-        updated_questions = questions.copy()
-        for q, count in duplicates.items():
-            while updated_questions.count(q) > 1:
-                updated_questions.remove(q)
-
-        # Update the team record
-        teampts.update_one(
-            {"username": username},
-            {"$set": {"questions": updated_questions}, "$inc": {"points": -points_to_deduct}}
-        )
-
-        corrected_teams.append(username)
-
-    print(f"Corrected teams: {corrected_teams}")
-
-
-def register_users_from_csv(teams):
-    for username, _ in teams:
-        userpass.delete_one({"username": username})
-    with open('Username.csv', mode='r') as csv_file:
-        csv_reader = csv.DictReader(csv_file)
-        for row in csv_reader:
-            username = row['Username']
-            password = row['Password']
-            if not userpass.find_one({"username": username}):
-                password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
-                userpass.insert_one({"username": username, "password": password_hash})
-    for username, _ in teams:
-        userpass.delete_one({"username": username})
-    for username, password in teams:
-        if not userpass.find_one({"username": username}):
-            password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
-            userpass.insert_one({"username": username, "password": password_hash})
-        else:
-            print(f"User {username} already exists.")
-
-
 @app.route('/')
 def index():
-    allcookies = request.cookies
+    visits = int(request.cookies.get('visits', 0)) + 1
     response = make_response(render_template('index.html'))
-    visits = int(allcookies.get('visits', 0)) + 1
     response.set_cookie('visits', str(visits), max_age=3600)
     return response
-
 
 @app.route('/game')
 def game():
@@ -137,22 +59,17 @@ def game():
                 questions_answered_correctly = team_data.get("questions", [])
                 used_q16_codes = team_data.get("used_q16_codes", [])
                 all_q16_used = set(used_q16_codes) == set(correct_answers["Q16"])
-
     return render_template('game.html', team=user, questions_correct=questions_answered_correctly,
                            all_q16_used=all_q16_used)
-
 
 @app.route('/leaderboard')
 def leaderboard():
     leaderboard_data = teampts.find().sort("points", -1)
     leaderboard_list = [(entry.get("username"), entry.get("points", 0)) for entry in leaderboard_data]
-
     response = make_response(render_template('leaderboard.html', leaderboard=leaderboard_list))
     visits = int(request.cookies.get('visits', 0)) + 1
     response.set_cookie('visits', str(visits), max_age=3600)
-
     return response
-
 
 @app.route('/leaderboard_data')
 def leaderboard_data():
@@ -160,24 +77,19 @@ def leaderboard_data():
     leaderboard_data = [{"username": entry.get("username"), "points": entry.get("points", 0)} for entry in sorted_data]
     return jsonify(leaderboard_data)
 
-
 @app.route('/mentors')
 def mentors():
-    allcookies = request.cookies
+    visits = int(request.cookies.get('visits', 0)) + 1
     response = make_response(render_template('mentors.html'))
-    visits = int(allcookies.get('visits', 0)) + 1
     response.set_cookie('visits', str(visits), max_age=3600)
     return response
-
 
 @app.route('/login')
 def login():
-    allcookies = request.cookies
+    visits = int(request.cookies.get('visits', 0)) + 1
     response = make_response(render_template('login.html'))
-    visits = int(allcookies.get('visits', 0)) + 1
     response.set_cookie('visits', str(visits), max_age=3600)
     return response
-
 
 @app.route('/registeruser', methods=['POST'])
 def register_user():
@@ -192,7 +104,6 @@ def register_user():
     password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
     userpass.insert_one({"username": username, "password": password_hash})
     return redirect(url_for('login'))
-
 
 @app.route('/loginuser', methods=['POST'])
 def login_user():
@@ -213,7 +124,7 @@ def login_user():
     else:
         return "Username not found or password is incorrect", 400
 
-
+@app.route('/submit', methods=['POST'])
 @app.route('/submit', methods=['POST'])
 def submit():
     token = request.cookies.get('token')
@@ -239,12 +150,16 @@ def submit():
     for q, answer in correct_answers.items():
         user_answer = request.form.get(q)
         if q == "Q16":
-            if user_answer in answer and user_answer not in team_used_q16_codes:  # Unique Q16 code submission check
+            # Check if the code has been used by any team
+            code_used_by_other_team = teampts.find_one({"used_q16_codes": user_answer})
+            if user_answer in answer and user_answer not in team_used_q16_codes and not code_used_by_other_team:
                 team_used_q16_codes.append(user_answer)
                 questions_correct.append(q)
                 total_points += question_points[q]
+            elif code_used_by_other_team:
+                return f"Code {user_answer} has already been used by another team.", 400
         else:
-            if user_answer == answer and q not in team_answered_questions:  # Prevent double submission for other questions
+            if user_answer == answer and q not in team_answered_questions:
                 questions_correct.append(q)
                 total_points += question_points[q]
 
@@ -261,49 +176,43 @@ def submit():
 
     return redirect(url_for('leaderboard'))
 
-
-
 @app.route('/assets/img/mentors/<filename>')
 def mentor_image(filename):
     return send_from_directory('static/img/mentors', filename)
-
 
 @app.route('/assets/img/others/<filename>')
 def other_image(filename):
     return send_from_directory('static/img/others', filename)
 
 
-register_users_from_csv(teams_to_register)
-fix_duplicate_points()
+def register_users_from_json():
+    json_file_path = 'users.json'
+    try:
+        with open(json_file_path, 'r') as file:
+            json_data = json.load(file)
+    except FileNotFoundError:
+        print(f"Error: The file '{json_file_path}' was not found.")
+        return
+    except json.JSONDecodeError:
+        print(f"Error: The file '{json_file_path}' is not a valid JSON.")
+        return
 
-def update_q16_code_usage():
-    all_teams = teampts.find()  # Fetch all team records
-    global_used_q16_codes = set()  # To keep track of all unique Q16 codes used globally
+    for entry in json_data:
+        username = entry.get("Username")
+        password = entry.get("Password")
 
-    for team in all_teams:
-        username = team["username"]
-        used_q16_codes = set(team.get("used_q16_codes", []))
+        if not helpers.is_valid_input(username) or not helpers.is_valid_input(password):
+            print(f"Invalid input for user: {username}")
+            continue
 
-        # Filter out the Q16 codes that have been used more than once globally
-        new_used_q16_codes = used_q16_codes - global_used_q16_codes
+        if userpass.find_one({"username": username}):
+            print(f"Username '{username}' already exists")
+            continue
 
-        # Update global set of used Q16 codes
-        global_used_q16_codes.update(new_used_q16_codes)
+        password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt())
+        userpass.insert_one({"username": username, "password": password_hash})
+        print(f"Registered user: {username}")
 
-        # Calculate the points to be adjusted
-        points_to_adjust = len(new_used_q16_codes) * question_points["Q16"]
-
-        # If there are codes that were counted more than once, update the team record
-        if new_used_q16_codes != used_q16_codes:
-            teampts.update_one(
-                {"username": username},
-                {"$set": {"used_q16_codes": list(new_used_q16_codes), "points": points_to_adjust}}
-            )
-
-    print("Updated Q16 code usage and points for all teams.")
-
-update_q16_code_usage()
-
-
+register_users_from_json()
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=3000)

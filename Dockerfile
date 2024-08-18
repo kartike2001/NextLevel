@@ -2,7 +2,7 @@ FROM python:3.8
 WORKDIR /root
 COPY . .
 
-RUN pip3 install pymongo bcrypt Flask
+RUN pip3 install pymongo bcrypt Flask requests
 
 EXPOSE 3000
 
